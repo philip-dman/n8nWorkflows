@@ -1,0 +1,664 @@
+{
+  "createdAt": "2025-07-10T18:01:38.143Z",
+  "updatedAt": "2025-07-15T00:43:37.000Z",
+  "id": "SD7o5BU0nfXnzj6a",
+  "name": "My TG assistant",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=This is the main task that needed immediate action\n<usertask>\n{{ $json.user_input }}\n</usertask>",
+        "options": {
+          "systemMessage": "=<context>\nYou are a helpful, intelligent telegram Chatbot\n</context>\n\n<instructions>\nYour task is to help in user's task.\nWhen you are unsure, search to all available tools for help, do not hallucinate.\nBe honest\n</instructions>\n\n<rules>\nMake sure that your output are short and concise.\n</rules>\n\nThis is the name of the user you are talking to\n<user'sname>\nHanz\n</user'sname>\n\nThis is the chat history, use it as a context when needed\n<chathistory>\n{{ $json.debugJson }}\n</chathistory>\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1080,
+        -80
+      ],
+      "id": "432b4fd5-4631-4569-93d6-be4d475328ed",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $execution.id }}",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1180,
+        180
+      ],
+      "id": "1f5055a8-e7de-4a60-8106-f76d786ffaf6",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "nP811raYks1s5nMl",
+          "name": "n8n database"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "7577088103",
+        "text": "={{ $json.html_output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1440,
+        100
+      ],
+      "id": "de464306-a578-40ce-8ed9-655c9aebb13a",
+      "name": "Send a text message",
+      "webhookId": "3030917c-7a1e-40fa-a714-b47a40b934b6",
+      "credentials": {
+        "telegramApi": {
+          "id": "xAR03zieJX7sa85l",
+          "name": "Ai Assistant"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## TELEGRAM AI BOT",
+        "height": 720,
+        "width": 1440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -220
+      ],
+      "id": "2dd86471-4739-463a-bded-9287b6005db6",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "36e48e53-8651-4115-b206-19cdeda82b16",
+              "name": "input1",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            },
+            {
+              "id": "f10ca698-70e9-4411-a316-c4cd9f403da2",
+              "name": "name",
+              "value": "={{ $json.message.from.first_name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        380,
+        -140
+      ],
+      "id": "d8a68781-34e1-4081-a759-4e52db76e110",
+      "name": "Input 1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4176979b-564c-4a2e-8f90-8ebb53e17ce4",
+              "name": "input2",
+              "value": "What's the latest news today in the Philippines?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        380,
+        60
+      ],
+      "id": "64fa6d5f-5148-43e3-8625-9ccb11623c52",
+      "name": "Input 2"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"user_input\": {{$json.input1 !== undefined ? JSON.stringify($json.input1) : ($json.input2 !== undefined ? JSON.stringify($json.input2) : JSON.stringify($json.input3))}}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        620,
+        -100
+      ],
+      "id": "e629267c-5676-4953-a044-7f674fd92d2a",
+      "name": "concern"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4176979b-564c-4a2e-8f90-8ebb53e17ce4",
+              "name": "input3",
+              "value": "search for a quote for the day, cite the author. do not repeat quotes",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        380,
+        260
+      ],
+      "id": "e20f0569-7ccd-49ac-8b0e-e31c07d5f138",
+      "name": "Input 3"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        260,
+        60
+      ],
+      "id": "3a26aa52-d6e4-41e5-836b-c931605a0410",
+      "name": "Daily News"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        260,
+        -140
+      ],
+      "id": "404f2bea-2f20-4603-b723-0ceccb9aa4cd",
+      "name": "User Chat",
+      "webhookId": "693fe162-e900-41c0-bead-3bf48a5bc92d",
+      "credentials": {
+        "telegramApi": {
+          "id": "xAR03zieJX7sa85l",
+          "name": "Ai Assistant"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "n8n_chat_histories",
+          "mode": "list",
+          "cachedResultName": "n8n_chat_histories"
+        },
+        "limit": 20,
+        "sort": {
+          "values": [
+            {
+              "column": "id",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        620,
+        60
+      ],
+      "id": "23802625-6702-486d-b282-91790d3c45de",
+      "name": "Select rows from a table",
+      "credentials": {
+        "postgres": {
+          "id": "nP811raYks1s5nMl",
+          "name": "n8n database"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "chathistory",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        620,
+        360
+      ],
+      "id": "be025ca8-b644-4424-8414-440b3b733402",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "const markdown = $input.first().json.output;\n\n// Convert \\n to <br>\nlet html = markdown.replace(/\\\\n/g, \"<br>\");\n\n// Convert **bold** (escaped) to <b>...</b>\nhtml = html.replace(/\\*\\*(.+?)\\*\\*/g, \"<b>$1</b>\");\n\n// Convert markdown links [text](url)\nhtml = html.replace(/\\[([^\\]]+)\\]\\(([^)]+)\\)/g, '<a href=\"$2\">$1</a>');\n\n// Remove all remaining backslashes\nhtml = html.replace(/\\\\/g, '');\n\nreturn [{\n  html_output: html\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        -80
+      ],
+      "id": "3911ea32-d8d9-458f-b601-62ac1ee116c9",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ee666fdc-78cc-4027-b532-3a84989f718d",
+              "name": "chatblock",
+              "value": "=Sender: {{ $json.message.type }}\nMessage: {{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        620,
+        220
+      ],
+      "id": "8cdd0cd0-fce7-4eef-afeb-eff423eaa04f",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ab5717cf-e44b-4510-b98c-a7f0b46539dc",
+              "name": "debugJson",
+              "value": "={{ JSON.stringify($json, null, 2) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        840,
+        200
+      ],
+      "id": "54404fc7-9225-47eb-adb6-bd45192f10b1",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        840,
+        -100
+      ],
+      "id": "aeb1f185-b061-4d08-8a0c-f25b27f3eb18",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        180
+      ],
+      "id": "eab4690a-499a-4523-bd4d-3ff3fab66b83",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wZuLC2RdDp5qitbQ",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10
+            },
+            {
+              "triggerAtHour": 17
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        260,
+        260
+      ],
+      "id": "c8225768-35d8-4895-aacb-0ecbffa4ca1f",
+      "name": "Quote of the day"
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://n8n.buyitproperties.online/mcp/basicTools"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        180
+      ],
+      "id": "69d5f73e-59f5-4a8d-b87f-97fe19de0a8c",
+      "name": "BASIC TOOLS"
+    }
+  ],
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input 1": {
+      "main": [
+        [
+          {
+            "node": "concern",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input 2": {
+      "main": [
+        [
+          {
+            "node": "concern",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "concern": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input 3": {
+      "main": [
+        [
+          {
+            "node": "concern",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily News": {
+      "main": [
+        [
+          {
+            "node": "Input 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "User Chat": {
+      "main": [
+        [
+          {
+            "node": "Input 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quote of the day": {
+      "main": [
+        [
+          {
+            "node": "Input 3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BASIC TOOLS": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "X7KwLzwsgWIkSzBo"
+  },
+  "staticData": {
+    "node:Daily News": {
+      "recurrenceRules": []
+    },
+    "node:Quote of the day": {
+      "recurrenceRules": []
+    }
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "User Chat": [
+      {
+        "json": {
+          "update_id": 338186904,
+          "message": {
+            "message_id": 327,
+            "from": {
+              "id": 7577088103,
+              "is_bot": false,
+              "first_name": "George",
+              "username": "georgei_143",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 7577088103,
+              "first_name": "George",
+              "username": "georgei_143",
+              "type": "private"
+            },
+            "date": 1752173555,
+            "text": "search for the best way to train a cat"
+          }
+        }
+      }
+    ]
+  },
+  "versionId": "2a8b9d68-14c4-4ef8-b08d-f758f3842f3a",
+  "triggerCount": 3,
+  "shared": [
+    {
+      "createdAt": "2025-07-10T18:01:38.147Z",
+      "updatedAt": "2025-07-10T18:01:38.147Z",
+      "role": "workflow:owner",
+      "workflowId": "SD7o5BU0nfXnzj6a",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "tags": []
+}
