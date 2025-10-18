@@ -1,0 +1,199 @@
+{
+  "createdAt": "2025-10-18T13:34:19.057Z",
+  "updatedAt": "2025-10-18T15:44:54.000Z",
+  "id": "SSVnJTYIDhgtCZBG",
+  "name": "portfolioChatbot",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "toChatbot",
+        "authentication": "jwtAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "babe4bda-90cd-4ed4-b509-33528ec705b7",
+      "name": "Webhook",
+      "webhookId": "9c28d3bc-dcd6-47a7-b134-2ffd8d7f9376",
+      "credentials": {
+        "jwtAuth": {
+          "id": "6WyWXXG1fCfxbkdx",
+          "name": "JWT Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.jwtPayload.message }}",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "You are a helpful assistant chatbot. You are a chatbot for the portfolio website of Hanz Philip Manaog.\n\nYour task is to answer relevant questions about Hanz Philip and his portfolio. Make sure your ansers are short but clear.\n\nYou will decline any request that may harm a person and about nsfw.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        352,
+        0
+      ],
+      "id": "691998a3-963e-4543-b2b3-73cd9da79df1",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1008,
+        0
+      ],
+      "id": "cf2ca4a4-7ac6-494c-91eb-a0b35e0e9281",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        224,
+        208
+      ],
+      "id": "1b4656b2-293e-47cf-bcf0-07628a2d6560",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wZuLC2RdDp5qitbQ",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        208
+      ],
+      "id": "11c55fea-76fd-401e-8f41-7c70e08b2635",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "VeHjjkENcCKPK22H",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $execution.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        256
+      ],
+      "id": "c1b3501b-3546-4968-a506-c5e110eeddb1",
+      "name": "Simple Memory"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "e3367205-a287-49f7-82e7-8333f6ef2dd1",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "createdAt": "2025-10-18T13:34:19.061Z",
+      "updatedAt": "2025-10-18T13:34:19.061Z",
+      "role": "workflow:owner",
+      "workflowId": "SSVnJTYIDhgtCZBG",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "tags": []
+}
