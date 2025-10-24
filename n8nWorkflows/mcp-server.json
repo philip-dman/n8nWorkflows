@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-07-10T18:56:10.394Z",
-  "updatedAt": "2025-07-14T10:37:35.000Z",
+  "updatedAt": "2025-10-24T00:59:12.000Z",
   "id": "QESFRn8Tc9kwsX6F",
   "name": "MCP server",
   "active": true,
@@ -26,7 +26,7 @@
       "type": "n8n-nodes-searxng.searxngTool",
       "typeVersion": 1,
       "position": [
-        820,
+        832,
         -160
       ],
       "id": "3e7c0d1f-ea06-4f2f-a5bf-9c30f10e05c4",
@@ -49,7 +49,7 @@
       "type": "n8n-nodes-base.dateTimeTool",
       "typeVersion": 2,
       "position": [
-        940,
+        944,
         -160
       ],
       "id": "2a6b5a65-5615-479c-b8f3-507ad6e1195e",
@@ -63,7 +63,7 @@
       "typeVersion": 2,
       "position": [
         720,
-        -340
+        -336
       ],
       "id": "e4946960-1250-474d-aea5-2d23d2007820",
       "name": "BASIC TOOLS",
@@ -76,8 +76,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
       "typeVersion": 2,
       "position": [
-        1220,
-        -340
+        1232,
+        -336
       ],
       "id": "379c808e-4586-4b3e-9994-a889ba45e043",
       "name": "database",
@@ -92,8 +92,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
       "typeVersion": 1.3,
       "position": [
-        1480,
-        -120
+        1488,
+        -128
       ],
       "id": "80b62848-76eb-42c0-a42c-eb6f31631f1c",
       "name": "Postgres PGVector Store",
@@ -109,7 +109,7 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        1560,
+        1568,
         0
       ],
       "id": "47853b8b-245f-4d2b-9099-b4462a7a0178",
@@ -179,8 +179,8 @@
       "type": "n8n-nodes-base.postgresTool",
       "typeVersion": 2.6,
       "position": [
-        1180,
-        -120
+        1184,
+        -128
       ],
       "id": "1a6282ae-1afe-463a-875c-a33c444b3bea",
       "name": "Update rows in a table in Postgres",
@@ -249,8 +249,8 @@
       "type": "n8n-nodes-base.postgresTool",
       "typeVersion": 2.6,
       "position": [
-        1320,
-        -120
+        1328,
+        -128
       ],
       "id": "b0bd12c9-d615-44ef-9f57-52e3d417e9c7",
       "name": "Insert or update rows in a table in Postgres",
@@ -268,8 +268,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
       "typeVersion": 2,
       "position": [
-        -940,
-        -380
+        -944,
+        -384
       ],
       "id": "0b912830-d6bb-4cac-98d6-4a97d38cf40d",
       "name": "gmail tools",
@@ -286,8 +286,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -1140,
-        -220
+        -1136,
+        -224
       ],
       "id": "ae33d534-1157-48d4-84c2-86b7db74044a",
       "name": "add Personal Label",
@@ -310,8 +310,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -980,
-        -220
+        -976,
+        -224
       ],
       "id": "3f092bd1-b3cf-4d49-aaf1-634d7f084905",
       "name": "add Work & Study Label",
@@ -334,8 +334,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -820,
-        -220
+        -816,
+        -224
       ],
       "id": "0db6f98e-a8d0-46cd-826d-698454b5b15c",
       "name": "add Services & Subscirptions Label",
@@ -358,8 +358,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -660,
-        -220
+        -656,
+        -224
       ],
       "id": "b558c89f-963c-4899-afd4-cfdd6bf8eed9",
       "name": "remove from INBOX",
@@ -378,8 +378,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
       "typeVersion": 2,
       "position": [
-        -940,
-        -40
+        -944,
+        -48
       ],
       "id": "f7163670-2ee1-46b7-ac1e-e8b3ffdbf642",
       "name": "gmail tools1",
@@ -396,8 +396,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -1140,
-        120
+        -1136,
+        128
       ],
       "id": "f22c8345-eb42-4517-98cd-3ef0ab754d2d",
       "name": "add Personal Label1",
@@ -420,8 +420,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -980,
-        120
+        -976,
+        128
       ],
       "id": "777ae29a-ac63-4418-b013-13422a59bf7e",
       "name": "add Work & Study Label1",
@@ -444,8 +444,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -820,
-        120
+        -816,
+        128
       ],
       "id": "9478d513-8c4f-4dc1-8209-febcdc030586",
       "name": "add Services & Subscirptions Label1",
@@ -468,8 +468,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -660,
-        120
+        -656,
+        128
       ],
       "id": "67b00a50-197e-4fa9-93ea-3505def94f10",
       "name": "remove from INBOX1",
@@ -488,7 +488,7 @@
       "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
       "typeVersion": 2,
       "position": [
-        -940,
+        -944,
         320
       ],
       "id": "60f2bc5a-7d43-4a9b-94f2-6a5b67d51118",
@@ -506,7 +506,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -1140,
+        -1136,
         480
       ],
       "id": "803ead67-c227-4332-9225-ca65f1d526b5",
@@ -530,7 +530,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -980,
+        -976,
         480
       ],
       "id": "917d5564-852c-4a35-af9b-f01be1d387d6",
@@ -554,7 +554,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -820,
+        -816,
         480
       ],
       "id": "358f4d42-e3bc-42cf-8c94-1474997d982f",
@@ -578,7 +578,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -660,
+        -656,
         480
       ],
       "id": "ab1b0418-a3ba-4900-973f-f1fdc092eb9f",
@@ -598,8 +598,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
       "typeVersion": 2,
       "position": [
-        -20,
-        -360
+        -16,
+        -368
       ],
       "id": "6704cafd-c500-47f1-b95b-4780e34526ce",
       "name": "File Management",
@@ -622,8 +622,8 @@
       "type": "n8n-nodes-base.googleDriveTool",
       "typeVersion": 3,
       "position": [
-        -200,
-        -200
+        -208,
+        -208
       ],
       "id": "751f41e8-7957-4a16-aaac-ece9280e4b2a",
       "name": "Upload file in Google Drive",
@@ -653,8 +653,8 @@
       "type": "n8n-nodes-base.googleDriveTool",
       "typeVersion": 3,
       "position": [
-        520,
-        -200
+        528,
+        -208
       ],
       "id": "72a5d0fa-bdd3-48b6-855d-ee6ae18055a2",
       "name": "Create file from text in Google Drive",
@@ -678,8 +678,8 @@
       "type": "n8n-nodes-base.googleDriveTool",
       "typeVersion": 3,
       "position": [
-        -60,
-        -200
+        -64,
+        -208
       ],
       "id": "5a0805cf-3298-4977-9808-62f79f2e2360",
       "name": "Delete a file in Google Drive",
@@ -703,8 +703,8 @@
       "type": "n8n-nodes-base.googleDriveTool",
       "typeVersion": 3,
       "position": [
-        60,
-        -200
+        64,
+        -208
       ],
       "id": "0e1b326d-527c-4b03-9de1-236128f03aa5",
       "name": "Download file in Google Drive",
@@ -731,7 +731,7 @@
       "typeVersion": 3,
       "position": [
         240,
-        -200
+        -208
       ],
       "id": "f70c16f5-956e-4a1a-be89-57acff26ddae",
       "name": "Update file in Google Drive",
@@ -764,8 +764,8 @@
       "type": "n8n-nodes-base.googleDriveTool",
       "typeVersion": 3,
       "position": [
-        380,
-        -200
+        384,
+        -208
       ],
       "id": "ffa91174-1d7f-449f-8684-505cd9abec9e",
       "name": "Move file in Google Drive",
@@ -784,8 +784,8 @@
       "type": "n8n-nodes-base.googleDocsTool",
       "typeVersion": 2,
       "position": [
-        -200,
-        140
+        -208,
+        144
       ],
       "id": "d44fabc9-9aa0-4e41-a681-4200b5f904ce",
       "name": "Create a document in Google Docs",
@@ -812,8 +812,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.6,
       "position": [
-        -60,
-        -20
+        -64,
+        -16
       ],
       "id": "0128ec72-90f7-44df-ac1f-2ef8af46a749",
       "name": "Create spreadsheet in Google Sheets",
@@ -842,7 +842,7 @@
       "typeVersion": 4.6,
       "position": [
         240,
-        -20
+        -16
       ],
       "id": "1f592f9e-91c7-496b-9590-cee768f6d19f",
       "name": "Get row(s) in sheet in Google Sheets",
@@ -879,8 +879,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.6,
       "position": [
-        60,
-        -20
+        64,
+        -16
       ],
       "id": "d9ea7cc9-cffd-4269-9844-9cddfbec8b2f",
       "name": "Append or update row in sheet in Google Sheets",
@@ -910,8 +910,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.6,
       "position": [
-        520,
-        -20
+        528,
+        -16
       ],
       "id": "ebe81cf8-1841-4b95-ae19-cc009ce0569d",
       "name": "Delete rows or columns from sheet in Google Sheets",
@@ -942,8 +942,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.6,
       "position": [
-        380,
-        -20
+        384,
+        -16
       ],
       "id": "dae5499f-6c46-4e83-a5b6-1a7042f3a5a2",
       "name": "Delete rows or columns from sheet in Google Sheets1",
@@ -971,8 +971,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.6,
       "position": [
-        -200,
-        -20
+        -208,
+        -16
       ],
       "id": "eb33faed-2751-4cde-a8f8-d6880c4fa7b1",
       "name": "Delete sheet in Google Sheets",
@@ -990,8 +990,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
       "typeVersion": 2,
       "position": [
-        -200,
-        340
+        -208,
+        352
       ],
       "id": "d55542ee-d7b9-430b-acdc-29be49f09907",
       "name": "Calendar",
@@ -1013,8 +1013,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        -280,
-        520
+        -288,
+        528
       ],
       "id": "f3bd9147-1646-4e10-abb9-dbc87f540dec",
       "name": "Get availability in a calendar in Google Calendar",
@@ -1041,8 +1041,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        -140,
-        520
+        -144,
+        528
       ],
       "id": "58049ae4-10c4-41d1-82a9-20dbf1a49381",
       "name": "Create an event in Google Calendar",
@@ -1070,8 +1070,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        40,
-        520
+        48,
+        528
       ],
       "id": "80407103-e7de-4f10-b160-da36a4a949d5",
       "name": "Get many events in Google Calendar",
@@ -1097,8 +1097,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        140,
-        520
+        144,
+        528
       ],
       "id": "40a3e78a-27d6-46b6-86f2-5c7047da54f7",
       "name": "Delete an event in Google Calendar",
@@ -1124,8 +1124,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        -140,
-        680
+        -144,
+        688
       ],
       "id": "50af1aa9-a784-4726-be86-6a020c7be4db",
       "name": "Get an event in Google Calendar",
@@ -1152,8 +1152,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        40,
-        680
+        48,
+        688
       ],
       "id": "cad0816e-9dbf-418f-b596-22310dd670d3",
       "name": "Update an event in Google Calendar",
@@ -1171,8 +1171,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
       "typeVersion": 2,
       "position": [
-        460,
-        340
+        464,
+        352
       ],
       "id": "33e06c94-3ba8-4669-a9c8-ec0f02428a33",
       "name": "My email (gmail)",
@@ -1189,8 +1189,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        460,
-        500
+        464,
+        512
       ],
       "id": "86814557-ca18-4208-b52b-624b12fb285c",
       "name": "Get many messages in Gmail",
@@ -1210,8 +1210,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        460,
-        660
+        464,
+        672
       ],
       "id": "92eb8a6e-56ae-476b-9ef2-25c823b24022",
       "name": "Mark a message as read in Gmail",
@@ -1231,7 +1231,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        580,
+        592,
         560
       ],
       "id": "9ad2c3ef-9cc6-44fb-abc4-d4774efe4980",
@@ -1243,6 +1243,34 @@
           "name": "manaoghanzphilip@gmail.com"
         }
       }
+    },
+    {
+      "parameters": {
+        "path": "portfolio"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        960,
+        352
+      ],
+      "id": "633d4531-4b69-42c5-b846-2b07360ebdfc",
+      "name": "portfolioMCP",
+      "webhookId": "484f06d0-e9eb-4b49-8240-002bd3be4ed5"
+    },
+    {
+      "parameters": {
+        "url": "https://hanzportfolio.safehub-lcup.uk/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1056,
+        560
+      ],
+      "id": "6ecfcdf8-66a7-437e-8c98-c7ed78a4b654",
+      "name": "hanz website portfolio"
     }
   ],
   "connections": {
@@ -1696,6 +1724,17 @@
           }
         ]
       ]
+    },
+    "hanz website portfolio": {
+      "ai_tool": [
+        [
+          {
+            "node": "portfolioMCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1708,8 +1747,8 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "c7914fc9-126c-40a9-87e8-8d6d0f66e015",
-  "triggerCount": 8,
+  "versionId": "97ce28fd-ee5b-42d7-a689-f4d2a5160de6",
+  "triggerCount": 9,
   "shared": [
     {
       "createdAt": "2025-07-10T18:56:10.398Z",
