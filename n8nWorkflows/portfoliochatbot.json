@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-10-18T13:34:19.057Z",
-  "updatedAt": "2025-10-19T06:38:26.000Z",
+  "updatedAt": "2025-10-24T01:02:05.000Z",
   "id": "SSVnJTYIDhgtCZBG",
   "name": "portfolioChatbot",
   "active": true,
@@ -36,7 +36,7 @@
         "text": "={{ $json.jwtPayload.message }}",
         "needsFallback": true,
         "options": {
-          "systemMessage": "You are a helpful assistant chatbot. You are a chatbot for the portfolio website of Hanz Philip Manaog.\n\nYour task is to answer relevant questions about Hanz Philip and his portfolio. Make sure your ansers are short but clear.\n\nYou will decline any request that may harm a person and about nsfw.\n"
+          "systemMessage": "=You are a helpful assistant chatbot. You are a chatbot for the portfolio website of Hanz Philip Manaog.\n\nYour task is to answer relevant questions about Hanz Philip and his portfolio. Make sure your ansers are short but clear.\n\nYou will decline any request that may harm a person and about nsfw.\n\nYou have access to Portfolio tools, use it when needed.\n"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -103,6 +103,20 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://hanzn8n.safehub-lcup.uk/mcp/portfolio",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        496,
+        208
+      ],
+      "id": "f65b7eca-1c2c-438c-8a4a-c32931c413a0",
+      "name": "Portfolio tools"
     }
   ],
   "connections": {
@@ -149,6 +163,17 @@
           }
         ]
       ]
+    },
+    "Portfolio tools": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -159,7 +184,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "67697e37-0708-48ac-bbcd-18f006f08458",
+  "versionId": "70272612-0edc-4850-ba20-8cfb03ffcc9e",
   "triggerCount": 1,
   "shared": [
     {
