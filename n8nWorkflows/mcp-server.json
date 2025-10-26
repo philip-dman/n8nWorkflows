@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-07-10T18:56:10.394Z",
-  "updatedAt": "2025-10-24T00:59:12.000Z",
+  "updatedAt": "2025-10-26T15:39:55.000Z",
   "id": "QESFRn8Tc9kwsX6F",
   "name": "MCP server",
   "active": true,
@@ -1266,11 +1266,32 @@
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.2,
       "position": [
-        1056,
-        560
+        960,
+        544
       ],
       "id": "6ecfcdf8-66a7-437e-8c98-c7ed78a4b654",
       "name": "hanz website portfolio"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT id, title, details\nFROM myProjects;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        1104,
+        544
+      ],
+      "id": "b090e803-1cf8-4212-8d2c-cdae85bc5fc5",
+      "name": "hanzProjects",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
     }
   ],
   "connections": {
@@ -1735,6 +1756,17 @@
           }
         ]
       ]
+    },
+    "hanzProjects": {
+      "ai_tool": [
+        [
+          {
+            "node": "portfolioMCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1747,7 +1779,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "97ce28fd-ee5b-42d7-a689-f4d2a5160de6",
+  "versionId": "f8fe564f-303f-4bd0-b867-6c8d0b6513b3",
   "triggerCount": 9,
   "shared": [
     {
