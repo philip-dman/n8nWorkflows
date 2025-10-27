@@ -1,6 +1,6 @@
 {
+  "updatedAt": "2025-10-26T16:06:38.000Z",
   "createdAt": "2025-07-10T18:56:10.394Z",
-  "updatedAt": "2025-10-26T15:39:55.000Z",
   "id": "QESFRn8Tc9kwsX6F",
   "name": "MCP server",
   "active": true,
@@ -1282,10 +1282,37 @@
       "typeVersion": 2.5,
       "position": [
         1104,
-        544
+        640
       ],
       "id": "b090e803-1cf8-4212-8d2c-cdae85bc5fc5",
       "name": "hanzProjects",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "myContacts",
+          "mode": "list",
+          "cachedResultName": "myContacts"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        1248,
+        640
+      ],
+      "id": "0b7fe25a-5bf6-4e41-a7e9-f8eb70819532",
+      "name": "hanzContacts",
       "credentials": {
         "mySql": {
           "id": "CwqMbq3EowXG7dzv",
@@ -1767,6 +1794,17 @@
           }
         ]
       ]
+    },
+    "hanzContacts": {
+      "ai_tool": [
+        [
+          {
+            "node": "portfolioMCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1779,12 +1817,12 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "f8fe564f-303f-4bd0-b867-6c8d0b6513b3",
+  "versionId": "9d868a7c-b3af-40da-81ee-edeac9b9879c",
   "triggerCount": 9,
   "shared": [
     {
-      "createdAt": "2025-07-10T18:56:10.398Z",
       "updatedAt": "2025-07-10T18:56:10.398Z",
+      "createdAt": "2025-07-10T18:56:10.398Z",
       "role": "workflow:owner",
       "workflowId": "QESFRn8Tc9kwsX6F",
       "projectId": "kZBVJF2foTBqYjQ4"
