@@ -1,6 +1,6 @@
 {
-  "createdAt": "2025-07-12T06:25:38.414Z",
   "updatedAt": "2025-10-09T08:25:33.000Z",
+  "createdAt": "2025-07-12T06:25:38.414Z",
   "id": "aTt4dfywS0uvNDvu",
   "name": "GMAIL BOT v2",
   "active": true,
@@ -1176,24 +1176,24 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1761231496,
+        "lastTimeChecked": 1761730602,
         "possibleDuplicates": [
-          "19a06964c628df1d"
+          "19a2f53a6a55c857",
+          "19a2f08e2f670248"
         ]
       }
     },
     "node:Gmail Trigger1": {
       "Gmail Trigger1": {
-        "lastTimeChecked": 1761231461,
+        "lastTimeChecked": 1761698085,
         "possibleDuplicates": [
-          "19a119361584a964",
-          "19a11806da5bfd74"
+          "19a2d637fb697e35"
         ]
       }
     },
     "node:Gmail Trigger2": {
       "Gmail Trigger2": {
-        "lastTimeChecked": 1761231461,
+        "lastTimeChecked": 1761566764,
         "possibleDuplicates": [
           "19810f4170337a4e"
         ]
@@ -1208,8 +1208,8 @@
   "triggerCount": 3,
   "shared": [
     {
-      "createdAt": "2025-07-12T06:25:38.418Z",
       "updatedAt": "2025-07-12T06:25:38.418Z",
+      "createdAt": "2025-07-12T06:25:38.418Z",
       "role": "workflow:owner",
       "workflowId": "aTt4dfywS0uvNDvu",
       "projectId": "kZBVJF2foTBqYjQ4"
