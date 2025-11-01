@@ -1,0 +1,74 @@
+{
+  "updatedAt": "2025-11-01T15:02:06.000Z",
+  "createdAt": "2025-11-01T14:58:49.212Z",
+  "id": "SnSzt8hABvhvsQRk",
+  "name": "website scraping",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cd35379a-5d01-4fc2-bfe4-16e442a1597b",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://www.gmanetwork.com/news/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "db69116f-9ebc-4b45-a833-c9acbc43d8fd",
+      "name": "HTTP Request"
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "0e512eab-abd3-409b-a2ba-dc17d58837b2",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-11-01T14:58:49.219Z",
+      "createdAt": "2025-11-01T14:58:49.219Z",
+      "role": "workflow:owner",
+      "workflowId": "SnSzt8hABvhvsQRk",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "tags": []
+}
