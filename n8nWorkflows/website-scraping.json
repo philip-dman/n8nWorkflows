@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-01T15:02:06.000Z",
+  "updatedAt": "2025-11-02T15:53:35.000Z",
   "createdAt": "2025-11-01T14:58:49.212Z",
   "id": "SnSzt8hABvhvsQRk",
   "name": "website scraping",
@@ -28,12 +28,14 @@
     {
       "parameters": {
         "url": "https://www.gmanetwork.com/news/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        208,
+        224,
         0
       ],
       "id": "db69116f-9ebc-4b45-a833-c9acbc43d8fd",
@@ -51,15 +53,22 @@
           }
         ]
       ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
     }
   },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "pinData": {},
-  "versionId": "0e512eab-abd3-409b-a2ba-dc17d58837b2",
+  "versionId": "353d30d4-10e8-4808-99b3-9ba7574825ba",
   "triggerCount": 0,
   "shared": [
     {
