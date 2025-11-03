@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-02T15:53:35.000Z",
+  "updatedAt": "2025-11-03T14:41:30.000Z",
   "createdAt": "2025-11-01T14:58:49.212Z",
   "id": "SnSzt8hABvhvsQRk",
   "name": "website scraping",
@@ -19,8 +19,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        0,
-        0
+        -320,
+        -128
       ],
       "id": "cd35379a-5d01-4fc2-bfe4-16e442a1597b",
       "name": "Schedule Trigger"
@@ -28,18 +28,54 @@
     {
       "parameters": {
         "url": "https://www.gmanetwork.com/news/",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        224,
-        0
+        -112,
+        64
+      ],
+      "id": "e24bfe12-c9fb-4a94-aa63-170254eb1d39",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.100.125:3002/v1/scrape",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "https://www.gmanetwork.com/news/"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -112,
+        -160
       ],
       "id": "db69116f-9ebc-4b45-a833-c9acbc43d8fd",
-      "name": "HTTP Request"
+      "name": "firecrawl"
+    },
+    {
+      "parameters": {
+        "html": "={{ $json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        96,
+        64
+      ],
+      "id": "de86a374-a861-4e2c-865d-b805498ef66d",
+      "name": "Markdown"
     }
   ],
   "connections": {
@@ -47,16 +83,27 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "HTTP Request1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "HTTP Request": {
+    "firecrawl": {
       "main": [
         []
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -68,7 +115,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "353d30d4-10e8-4808-99b3-9ba7574825ba",
+  "versionId": "822e2f13-68d9-4669-b6a8-687b36789a8d",
   "triggerCount": 0,
   "shared": [
     {
