@@ -1,6 +1,6 @@
 {
-  "createdAt": "2025-07-14T09:53:31.588Z",
   "updatedAt": "2025-09-26T05:22:32.000Z",
+  "createdAt": "2025-07-14T09:53:31.588Z",
   "id": "BQV07S67dkKXyQhu",
   "name": "MY TG ASSISTANT V2",
   "active": false,
@@ -262,15 +262,17 @@
   },
   "pinData": {},
   "versionId": "522999b5-e440-4649-8db6-a4c33b5078b7",
+  "activeVersionId": null,
   "triggerCount": 1,
   "shared": [
     {
-      "createdAt": "2025-07-14T09:53:31.591Z",
       "updatedAt": "2025-07-14T09:53:31.591Z",
+      "createdAt": "2025-07-14T09:53:31.591Z",
       "role": "workflow:owner",
       "workflowId": "BQV07S67dkKXyQhu",
       "projectId": "kZBVJF2foTBqYjQ4"
     }
   ],
+  "activeVersion": null,
   "tags": []
 }
