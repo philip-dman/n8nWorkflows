@@ -1,6 +1,6 @@
 {
-  "createdAt": "2025-07-11T02:26:44.772Z",
   "updatedAt": "2025-10-01T07:15:56.000Z",
+  "createdAt": "2025-07-11T02:26:44.772Z",
   "id": "BgwmEMlI802p4qdB",
   "name": "SAFEHUB BOT PROTOTYPE",
   "active": false,
@@ -168,15 +168,17 @@
   },
   "pinData": {},
   "versionId": "01a91528-bc75-4021-a83c-4e4abd23cf45",
+  "activeVersionId": null,
   "triggerCount": 1,
   "shared": [
     {
-      "createdAt": "2025-07-11T02:26:44.776Z",
       "updatedAt": "2025-07-11T02:26:44.776Z",
+      "createdAt": "2025-07-11T02:26:44.776Z",
       "role": "workflow:owner",
       "workflowId": "BgwmEMlI802p4qdB",
       "projectId": "kZBVJF2foTBqYjQ4"
     }
   ],
+  "activeVersion": null,
   "tags": []
 }
