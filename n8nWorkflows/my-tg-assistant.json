@@ -1,6 +1,6 @@
 {
-  "createdAt": "2025-07-10T18:01:38.143Z",
   "updatedAt": "2025-07-15T00:43:37.000Z",
+  "createdAt": "2025-07-10T18:01:38.143Z",
   "id": "SD7o5BU0nfXnzj6a",
   "name": "My TG assistant",
   "active": false,
@@ -650,15 +650,17 @@
     ]
   },
   "versionId": "2a8b9d68-14c4-4ef8-b08d-f758f3842f3a",
+  "activeVersionId": null,
   "triggerCount": 3,
   "shared": [
     {
-      "createdAt": "2025-07-10T18:01:38.147Z",
       "updatedAt": "2025-07-10T18:01:38.147Z",
+      "createdAt": "2025-07-10T18:01:38.147Z",
       "role": "workflow:owner",
       "workflowId": "SD7o5BU0nfXnzj6a",
       "projectId": "kZBVJF2foTBqYjQ4"
     }
   ],
+  "activeVersion": null,
   "tags": []
 }
