@@ -1,19 +1,132 @@
 {
-  "updatedAt": "2025-12-02T15:47:21.407Z",
+  "updatedAt": "2025-12-09T15:15:51.362Z",
   "createdAt": "2025-12-02T15:47:21.407Z",
   "id": "NFhkLFyLA66VXm7T",
   "name": "Database sandbox",
   "active": false,
   "isArchived": false,
-  "nodes": [],
-  "connections": {},
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "HeroSELECT",
+        "authentication": "jwtAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -400,
+        -16
+      ],
+      "id": "79c572d6-040e-4057-acf4-fc5f1ee30006",
+      "name": "Webhook",
+      "webhookId": "11b81648-8cbe-40b8-856c-5b05ea75ab4a",
+      "credentials": {
+        "jwtAuth": {
+          "id": "6WyWXXG1fCfxbkdx",
+          "name": "JWT Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "myHero",
+          "mode": "list",
+          "cachedResultName": "myHero"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -192,
+        -16
+      ],
+      "id": "541b3c38-5064-44a0-9b69-7557d96641a1",
+      "name": "Select rows from a table",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        16,
+        -16
+      ],
+      "id": "afe58ed4-bd6a-4600-b1b0-334f8edf8c2e",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        160
+      ],
+      "id": "6b7d609a-1fb7-4e5a-b58b-fdb5f5847517",
+      "name": "When clicking ‘Execute workflow’"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "pinData": {},
-  "versionId": "fbb0bb35-cdb1-4674-9e0f-0547f7b851f1",
+  "versionId": "d030199a-6f06-4da6-95a9-996408b87f67",
   "activeVersionId": null,
   "triggerCount": 0,
   "shared": [
