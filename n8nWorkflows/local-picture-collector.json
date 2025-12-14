@@ -1,6 +1,6 @@
 {
-  "createdAt": "2025-07-26T15:31:06.601Z",
   "updatedAt": "2025-08-12T09:28:23.000Z",
+  "createdAt": "2025-07-26T15:31:06.601Z",
   "id": "WWJNDQPC2X4wyije",
   "name": "local picture collector",
   "active": false,
@@ -1387,15 +1387,17 @@
   "meta": null,
   "pinData": {},
   "versionId": "06f48e3a-038f-4360-b2ed-bb3d38f625e2",
+  "activeVersionId": null,
   "triggerCount": 2,
   "shared": [
     {
-      "createdAt": "2025-07-26T15:31:06.606Z",
       "updatedAt": "2025-07-26T15:31:06.606Z",
+      "createdAt": "2025-07-26T15:31:06.606Z",
       "role": "workflow:owner",
       "workflowId": "WWJNDQPC2X4wyije",
       "projectId": "kZBVJF2foTBqYjQ4"
     }
   ],
+  "activeVersion": null,
   "tags": []
 }
