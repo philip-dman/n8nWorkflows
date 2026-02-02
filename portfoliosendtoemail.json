@@ -1,0 +1,175 @@
+{
+  "updatedAt": "2025-10-26T16:30:15.000Z",
+  "createdAt": "2025-09-29T12:47:50.067Z",
+  "id": "i3Po5K1myqi8qwpW",
+  "name": "portfolioSendToEmail",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "portfolioToEmail",
+        "authentication": "jwtAuth",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6ae162e1-37af-4efb-b330-8fd97896a5c8",
+      "name": "Webhook",
+      "webhookId": "d919e191-8538-406e-a773-141e4cadc68d",
+      "credentials": {
+        "jwtAuth": {
+          "id": "UIP6aqfws5xPMVl4",
+          "name": "JWT try"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "manaoghanzphilip@gmail.com",
+        "subject": "Message from Portfolio Website",
+        "emailType": "text",
+        "message": "=Sender : {{ $json.jwtPayload.name }}\nEmail : {{ $json.jwtPayload.email }}\n\nMessage : \n{{ $json.jwtPayload.message }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "={{ $json.jwtPayload.name }}",
+          "replyTo": "={{ $json.jwtPayload.email }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "cebbdd7f-ef7d-4132-aa49-d45892ebff9e",
+      "name": "Send a message to me",
+      "webhookId": "867bba25-08e6-4460-8c84-5bd822dfd5a4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send a message to me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "afee5bf3-466f-4ca5-944b-1437c3e0ecce",
+  "activeVersionId": "afee5bf3-466f-4ca5-944b-1437c3e0ecce",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2025-09-29T12:47:50.074Z",
+      "createdAt": "2025-09-29T12:47:50.074Z",
+      "role": "workflow:owner",
+      "workflowId": "i3Po5K1myqi8qwpW",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2025-11-25T10:48:48.155Z",
+    "createdAt": "2025-11-25T10:48:48.155Z",
+    "versionId": "afee5bf3-466f-4ca5-944b-1437c3e0ecce",
+    "workflowId": "i3Po5K1myqi8qwpW",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "portfolioToEmail",
+          "authentication": "jwtAuth",
+          "options": {
+            "allowedOrigins": "*"
+          }
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "6ae162e1-37af-4efb-b330-8fd97896a5c8",
+        "name": "Webhook",
+        "webhookId": "d919e191-8538-406e-a773-141e4cadc68d",
+        "credentials": {
+          "jwtAuth": {
+            "id": "UIP6aqfws5xPMVl4",
+            "name": "JWT try"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sendTo": "manaoghanzphilip@gmail.com",
+          "subject": "Message from Portfolio Website",
+          "emailType": "text",
+          "message": "=Sender : {{ $json.jwtPayload.name }}\nEmail : {{ $json.jwtPayload.email }}\n\nMessage : \n{{ $json.jwtPayload.message }}",
+          "options": {
+            "appendAttribution": false,
+            "senderName": "={{ $json.jwtPayload.name }}",
+            "replyTo": "={{ $json.jwtPayload.email }}"
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          208,
+          0
+        ],
+        "id": "cebbdd7f-ef7d-4132-aa49-d45892ebff9e",
+        "name": "Send a message to me",
+        "webhookId": "867bba25-08e6-4460-8c84-5bd822dfd5a4",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "SQjQESRGfbvsewnr",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Send a message to me",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "tags": []
+}
