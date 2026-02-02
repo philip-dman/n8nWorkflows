@@ -1,0 +1,3837 @@
+{
+  "updatedAt": "2026-01-11T14:53:18.882Z",
+  "createdAt": "2025-07-10T18:56:10.394Z",
+  "id": "QESFRn8Tc9kwsX6F",
+  "name": "MCP server",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        720,
+        -160
+      ],
+      "id": "0bbd9c1c-977f-43cd-8c0b-39eaeff81e87",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-searxng.searxngTool",
+      "typeVersion": 1,
+      "position": [
+        832,
+        -160
+      ],
+      "id": "3e7c0d1f-ea06-4f2f-a5bf-9c30f10e05c4",
+      "name": "Searxng",
+      "credentials": {
+        "searxngApi": {
+          "id": "dvvuxd1THmHuLc4Z",
+          "name": "Searxng account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "includeTime": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Include_Current_Time', ``, 'boolean') }}",
+        "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
+        "options": {
+          "timezone": "Asia/Manila"
+        }
+      },
+      "type": "n8n-nodes-base.dateTimeTool",
+      "typeVersion": 2,
+      "position": [
+        944,
+        -160
+      ],
+      "id": "2a6b5a65-5615-479c-b8f3-507ad6e1195e",
+      "name": "Date & Time"
+    },
+    {
+      "parameters": {
+        "path": "basicTools"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        720,
+        -336
+      ],
+      "id": "e4946960-1250-474d-aea5-2d23d2007820",
+      "name": "BASIC TOOLS",
+      "webhookId": "0c4e7470-d9f5-4d08-a2fa-c99392966ac6"
+    },
+    {
+      "parameters": {
+        "path": "database"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        1232,
+        -336
+      ],
+      "id": "379c808e-4586-4b3e-9994-a889ba45e043",
+      "name": "database",
+      "webhookId": "463d41ce-08f5-427a-a8ac-3296a3985311"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "work with your data using postgress pgvector extension",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        1488,
+        -128
+      ],
+      "id": "80b62848-76eb-42c0-a42c-eb6f31631f1c",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "YLCL3GSvIzqQpMMB",
+          "name": "My N8N Database"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1568,
+        0
+      ],
+      "id": "47853b8b-245f-4d2b-9099-b4462a7a0178",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wZuLC2RdDp5qitbQ",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "=n8n_chat_histories",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "session_id",
+              "displayName": "session_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        1184,
+        -128
+      ],
+      "id": "1a6282ae-1afe-463a-875c-a33c444b3bea",
+      "name": "Update rows in a table in Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "nP811raYks1s5nMl",
+          "name": "n8n database"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "n8n_chat_histories",
+          "mode": "list",
+          "cachedResultName": "n8n_chat_histories"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "session_id",
+              "displayName": "session_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        1328,
+        -128
+      ],
+      "id": "b0bd12c9-d615-44ef-9f57-52e3d417e9c7",
+      "name": "Insert or update rows in a table in Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "nP811raYks1s5nMl",
+          "name": "n8n database"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "gmail"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        -944,
+        -384
+      ],
+      "id": "0b912830-d6bb-4cac-98d6-4a97d38cf40d",
+      "name": "gmail tools",
+      "webhookId": "370b8ac9-ec1c-4e6f-80a6-0bf095efa6b4"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+        "labelIds": [
+          "Label_8622164734475250154"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -1136,
+        -224
+      ],
+      "id": "ae33d534-1157-48d4-84c2-86b7db74044a",
+      "name": "add Personal Label",
+      "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+        "labelIds": [
+          "Label_6945315197989729641"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -976,
+        -224
+      ],
+      "id": "3f092bd1-b3cf-4d49-aaf1-634d7f084905",
+      "name": "add Work & Study Label",
+      "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+        "labelIds": [
+          "Label_5984747447549941547"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -816,
+        -224
+      ],
+      "id": "0db6f98e-a8d0-46cd-826d-698454b5b15c",
+      "name": "add Services & Subscirptions Label",
+      "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "removeLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `use the message id received`, 'string') }}",
+        "labelIds": [
+          "INBOX"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -656,
+        -224
+      ],
+      "id": "b558c89f-963c-4899-afd4-cfdd6bf8eed9",
+      "name": "remove from INBOX",
+      "webhookId": "aa764227-c35c-4ed6-ae61-de795982e4f4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "gmail1"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        -944,
+        -48
+      ],
+      "id": "f7163670-2ee1-46b7-ac1e-e8b3ffdbf642",
+      "name": "gmail tools1",
+      "webhookId": "370b8ac9-ec1c-4e6f-80a6-0bf095efa6b4"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+        "labelIds": [
+          "Label_9046537389594423072"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -1136,
+        128
+      ],
+      "id": "f22c8345-eb42-4517-98cd-3ef0ab754d2d",
+      "name": "add Personal Label1",
+      "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "KnabIph0yBl2wWR3",
+          "name": "hanzmanaog101@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+        "labelIds": [
+          "Label_2757083659783760408"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -976,
+        128
+      ],
+      "id": "777ae29a-ac63-4418-b013-13422a59bf7e",
+      "name": "add Work & Study Label1",
+      "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "KnabIph0yBl2wWR3",
+          "name": "hanzmanaog101@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+        "labelIds": [
+          "Label_7705551783799065887"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -816,
+        128
+      ],
+      "id": "9478d513-8c4f-4dc1-8209-febcdc030586",
+      "name": "add Services & Subscirptions Label1",
+      "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "KnabIph0yBl2wWR3",
+          "name": "hanzmanaog101@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "removeLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `use the message id received`, 'string') }}",
+        "labelIds": [
+          "INBOX"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -656,
+        128
+      ],
+      "id": "67b00a50-197e-4fa9-93ea-3505def94f10",
+      "name": "remove from INBOX1",
+      "webhookId": "aa764227-c35c-4ed6-ae61-de795982e4f4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "KnabIph0yBl2wWR3",
+          "name": "hanzmanaog101@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "gmail2"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        -944,
+        320
+      ],
+      "id": "60f2bc5a-7d43-4a9b-94f2-6a5b67d51118",
+      "name": "gmail tools2",
+      "webhookId": "370b8ac9-ec1c-4e6f-80a6-0bf095efa6b4"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+        "labelIds": [
+          "Label_8410731410158343503"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -1136,
+        480
+      ],
+      "id": "803ead67-c227-4332-9225-ca65f1d526b5",
+      "name": "add Personal Label2",
+      "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nDZ7cParZGSPezD9",
+          "name": "hanzphilip.manaog@email.lcup.edu.ph"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+        "labelIds": [
+          "Label_7124345992120683373"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -976,
+        480
+      ],
+      "id": "917d5564-852c-4a35-af9b-f01be1d387d6",
+      "name": "add Work & Study Label2",
+      "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nDZ7cParZGSPezD9",
+          "name": "hanzphilip.manaog@email.lcup.edu.ph"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+        "labelIds": [
+          "Label_1570897442208458164"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -816,
+        480
+      ],
+      "id": "358f4d42-e3bc-42cf-8c94-1474997d982f",
+      "name": "add Services & Subscirptions Label2",
+      "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nDZ7cParZGSPezD9",
+          "name": "hanzphilip.manaog@email.lcup.edu.ph"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "removeLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `use the message id received`, 'string') }}",
+        "labelIds": [
+          "INBOX"
+        ]
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -656,
+        480
+      ],
+      "id": "ab1b0418-a3ba-4900-973f-f1fdc092eb9f",
+      "name": "remove from INBOX2",
+      "webhookId": "aa764227-c35c-4ed6-ae61-de795982e4f4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nDZ7cParZGSPezD9",
+          "name": "hanzphilip.manaog@email.lcup.edu.ph"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "fileM"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        -368
+      ],
+      "id": "6704cafd-c500-47f1-b95b-4780e34526ce",
+      "name": "File Management",
+      "webhookId": "a622f8ea-1c24-4cf4-8ffe-6a33c417d442"
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "https://drive.google.com/drive/u/0/folders/1rq8Aohh450xraqhHHLy_So1Kg-Hpvojc",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        -208,
+        -208
+      ],
+      "id": "751f41e8-7957-4a16-aaac-ece9280e4b2a",
+      "name": "Upload file in Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ljpoFxX9JuE7xZ8G",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File_Content', ``, 'string') }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "https://drive.google.com/drive/u/0/folders/1rq8Aohh450xraqhHHLy_So1Kg-Hpvojc",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        528,
+        -208
+      ],
+      "id": "72a5d0fa-bdd3-48b6-855d-ee6ae18055a2",
+      "name": "Create file from text in Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ljpoFxX9JuE7xZ8G",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteFile",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File', ``, 'string') }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        -64,
+        -208
+      ],
+      "id": "5a0805cf-3298-4977-9808-62f79f2e2360",
+      "name": "Delete a file in Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ljpoFxX9JuE7xZ8G",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File', ``, 'string') }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        64,
+        -208
+      ],
+      "id": "0e1b326d-527c-4b03-9de1-236128f03aa5",
+      "name": "Download file in Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ljpoFxX9JuE7xZ8G",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File_to_Update', ``, 'string') }}",
+          "mode": "id"
+        },
+        "changeFileContent": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Change_File_Content', ``, 'boolean') }}",
+        "newUpdatedFileName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('New_Updated_File_Name', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        240,
+        -208
+      ],
+      "id": "f70c16f5-956e-4a1a-be89-57acff26ddae",
+      "name": "Update file in Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ljpoFxX9JuE7xZ8G",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File', ``, 'string') }}",
+          "mode": "id"
+        },
+        "driveId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Parent_Drive', ``, 'string') }}",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Parent_Folder', ``, 'string') }}",
+          "mode": "id"
+        }
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        384,
+        -208
+      ],
+      "id": "ffa91174-1d7f-449f-8684-505cd9abec9e",
+      "name": "Move file in Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ljpoFxX9JuE7xZ8G",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "folderId": "1DObVpQlyzpGSt3Xa6H9vfQaHe0LopziY",
+        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        144
+      ],
+      "id": "d44fabc9-9aa0-4e41-a681-4200b5f904ce",
+      "name": "Create a document in Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "8z46XTqkT0WZzmfY",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}",
+        "sheetsUi": {
+          "sheetValues": [
+            {
+              "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('sheetValues0_Title', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -64,
+        -16
+      ],
+      "id": "0128ec72-90f7-44df-ac1f-2ef8af46a749",
+      "name": "Create spreadsheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "AaDTfoewRTDvJqmq",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        240,
+        -16
+      ],
+      "id": "1f592f9e-91c7-496b-9590-cee768f6d19f",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "AaDTfoewRTDvJqmq",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        64,
+        -16
+      ],
+      "id": "d9ea7cc9-cffd-4269-9844-9cddfbec8b2f",
+      "name": "Append or update row in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "AaDTfoewRTDvJqmq",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        528,
+        -16
+      ],
+      "id": "ebe81cf8-1841-4b95-ae19-cc009ce0569d",
+      "name": "Delete rows or columns from sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "AaDTfoewRTDvJqmq",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "toDelete": "columns",
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Column', ``, 'string') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Columns_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        384,
+        -16
+      ],
+      "id": "dae5499f-6c46-4e83-a5b6-1a7042f3a5a2",
+      "name": "Delete rows or columns from sheet in Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "AaDTfoewRTDvJqmq",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "remove",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -208,
+        -16
+      ],
+      "id": "eb33faed-2751-4cde-a8f8-d6880c4fa7b1",
+      "name": "Delete sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "AaDTfoewRTDvJqmq",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "calendar"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        352
+      ],
+      "id": "d55542ee-d7b9-430b-acdc-29be49f09907",
+      "name": "Calendar",
+      "webhookId": "6eb8cbe2-dace-444f-be6e-b01815559e33"
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Time', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_Time', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        -288,
+        528
+      ],
+      "id": "f3bd9147-1646-4e10-abb9-dbc87f540dec",
+      "name": "Get availability in a calendar in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "gJTWSYjHOg1WyQse",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "manaoghanzphilip@gmail.com",
+          "mode": "list",
+          "cachedResultName": "manaoghanzphilip@gmail.com"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "useDefaultReminders": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Use_Default_Reminders', ``, 'boolean') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        -144,
+        528
+      ],
+      "id": "58049ae4-10c4-41d1-82a9-20dbf1a49381",
+      "name": "Create an event in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "gJTWSYjHOg1WyQse",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        48,
+        528
+      ],
+      "id": "80407103-e7de-4f10-b160-da36a4a949d5",
+      "name": "Get many events in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "gJTWSYjHOg1WyQse",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        144,
+        528
+      ],
+      "id": "40a3e78a-27d6-46b6-86f2-5c7047da54f7",
+      "name": "Delete an event in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "gJTWSYjHOg1WyQse",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        -144,
+        688
+      ],
+      "id": "50af1aa9-a784-4726-be86-6a020c7be4db",
+      "name": "Get an event in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "gJTWSYjHOg1WyQse",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "useDefaultReminders": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Use_Default_Reminders', ``, 'boolean') }}",
+        "updateFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        48,
+        688
+      ],
+      "id": "cad0816e-9dbf-418f-b596-22310dd670d3",
+      "name": "Update an event in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "gJTWSYjHOg1WyQse",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "myemail"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        464,
+        352
+      ],
+      "id": "33e06c94-3ba8-4669-a9c8-ec0f02428a33",
+      "name": "My email (gmail)",
+      "webhookId": "a10befb0-f637-4a2e-9c28-838f7428c135"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "simple": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Simplify', ``, 'boolean') }}",
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        464,
+        512
+      ],
+      "id": "86814557-ca18-4208-b52b-624b12fb285c",
+      "name": "Get many messages in Gmail",
+      "webhookId": "6e5c8f06-980e-4254-9960-e02fb1693aa9",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        464,
+        672
+      ],
+      "id": "92eb8a6e-56ae-476b-9ef2-25c823b24022",
+      "name": "Mark a message as read in Gmail",
+      "webhookId": "2a7f5141-618a-4b66-b63c-bfb8a67c71c8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsUnread",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        592,
+        560
+      ],
+      "id": "9ad2c3ef-9cc6-44fb-abc4-d4774efe4980",
+      "name": "Mark a message as unread in Gmail",
+      "webhookId": "040f3cec-fe32-40eb-b905-d891901081b1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "portfolio"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        960,
+        352
+      ],
+      "id": "633d4531-4b69-42c5-b846-2b07360ebdfc",
+      "name": "portfolioMCP",
+      "webhookId": "484f06d0-e9eb-4b49-8240-002bd3be4ed5"
+    },
+    {
+      "parameters": {
+        "url": "https://hanzportfolio.safehub-lcup.uk/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        544
+      ],
+      "id": "6ecfcdf8-66a7-437e-8c98-c7ed78a4b654",
+      "name": "hanz website portfolio"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT id, title, details\nFROM myProjects;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        1104,
+        640
+      ],
+      "id": "b090e803-1cf8-4212-8d2c-cdae85bc5fc5",
+      "name": "hanzProjects",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "myContacts",
+          "mode": "list",
+          "cachedResultName": "myContacts"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        1248,
+        640
+      ],
+      "id": "0b7fe25a-5bf6-4e41-a7e9-f8eb70819532",
+      "name": "hanzContacts",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        688,
+        -512
+      ],
+      "id": "bc76e540-5e3e-4b20-a116-61f7f03e165e",
+      "name": "Calculator1"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-searxng.searxngTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        -512
+      ],
+      "id": "ca66fe74-eb70-4d5d-b4b7-a0363c52f13d",
+      "name": "Searxng1",
+      "credentials": {
+        "searxngApi": {
+          "id": "dvvuxd1THmHuLc4Z",
+          "name": "Searxng account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "includeTime": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Include_Current_Time', ``, 'boolean') }}",
+        "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
+        "options": {
+          "timezone": "Asia/Manila"
+        }
+      },
+      "type": "n8n-nodes-base.dateTimeTool",
+      "typeVersion": 2,
+      "position": [
+        912,
+        -512
+      ],
+      "id": "0efa1e78-c505-4a9e-8737-e3d028ab7493",
+      "name": "Date & Time1"
+    },
+    {
+      "parameters": {
+        "path": "dietTools"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        688,
+        -688
+      ],
+      "id": "fbf6c056-0797-44e7-b756-773612c108a7",
+      "name": "Diet Tools",
+      "webhookId": "0c4e7470-d9f5-4d08-a2fa-c99392966ac6"
+    }
+  ],
+  "connections": {
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "BASIC TOOLS",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Searxng": {
+      "ai_tool": [
+        [
+          {
+            "node": "BASIC TOOLS",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "ai_tool": [
+        [
+          {
+            "node": "BASIC TOOLS",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "database",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table in Postgres": {
+      "ai_tool": [
+        [
+          {
+            "node": "database",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table in Postgres": {
+      "ai_tool": [
+        [
+          {
+            "node": "database",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add Personal Label": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add Work & Study Label": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add Services & Subscirptions Label": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "remove from INBOX": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add Personal Label1": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add Work & Study Label1": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add Services & Subscirptions Label1": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "remove from INBOX1": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add Personal Label2": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add Work & Study Label2": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add Services & Subscirptions Label2": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "remove from INBOX2": {
+      "ai_tool": [
+        [
+          {
+            "node": "gmail tools2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file in Google Drive": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create file from text in Google Drive": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a file in Google Drive": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file in Google Drive": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update file in Google Drive": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Move file in Google Drive": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a document in Google Docs": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create spreadsheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete rows or columns from sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete rows or columns from sheet in Google Sheets1": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "File Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get availability in a calendar in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many events in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete an event in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get an event in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update an event in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "My email (gmail)",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark a message as read in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "My email (gmail)",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark a message as unread in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "My email (gmail)",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "hanz website portfolio": {
+      "ai_tool": [
+        [
+          {
+            "node": "portfolioMCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "hanzProjects": {
+      "ai_tool": [
+        [
+          {
+            "node": "portfolioMCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "hanzContacts": {
+      "ai_tool": [
+        [
+          {
+            "node": "portfolioMCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Diet Tools",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Searxng1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Diet Tools",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Diet Tools",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "X7KwLzwsgWIkSzBo"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "00a997ef-f957-4230-bb88-537db978b23f",
+  "activeVersionId": "00a997ef-f957-4230-bb88-537db978b23f",
+  "triggerCount": 10,
+  "shared": [
+    {
+      "updatedAt": "2025-07-10T18:56:10.398Z",
+      "createdAt": "2025-07-10T18:56:10.398Z",
+      "role": "workflow:owner",
+      "workflowId": "QESFRn8Tc9kwsX6F",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-01-11T14:53:21.000Z",
+    "createdAt": "2026-01-11T14:53:18.885Z",
+    "versionId": "00a997ef-f957-4230-bb88-537db978b23f",
+    "workflowId": "QESFRn8Tc9kwsX6F",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+        "typeVersion": 1,
+        "position": [
+          720,
+          -160
+        ],
+        "id": "0bbd9c1c-977f-43cd-8c0b-39eaeff81e87",
+        "name": "Calculator"
+      },
+      {
+        "parameters": {
+          "descriptionType": "manual",
+          "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-searxng.searxngTool",
+        "typeVersion": 1,
+        "position": [
+          832,
+          -160
+        ],
+        "id": "3e7c0d1f-ea06-4f2f-a5bf-9c30f10e05c4",
+        "name": "Searxng",
+        "credentials": {
+          "searxngApi": {
+            "id": "dvvuxd1THmHuLc4Z",
+            "name": "Searxng account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "includeTime": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Include_Current_Time', ``, 'boolean') }}",
+          "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
+          "options": {
+            "timezone": "Asia/Manila"
+          }
+        },
+        "type": "n8n-nodes-base.dateTimeTool",
+        "typeVersion": 2,
+        "position": [
+          944,
+          -160
+        ],
+        "id": "2a6b5a65-5615-479c-b8f3-507ad6e1195e",
+        "name": "Date & Time"
+      },
+      {
+        "parameters": {
+          "path": "basicTools"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          720,
+          -336
+        ],
+        "id": "e4946960-1250-474d-aea5-2d23d2007820",
+        "name": "BASIC TOOLS",
+        "webhookId": "0c4e7470-d9f5-4d08-a2fa-c99392966ac6"
+      },
+      {
+        "parameters": {
+          "path": "database"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          1232,
+          -336
+        ],
+        "id": "379c808e-4586-4b3e-9994-a889ba45e043",
+        "name": "database",
+        "webhookId": "463d41ce-08f5-427a-a8ac-3296a3985311"
+      },
+      {
+        "parameters": {
+          "mode": "retrieve-as-tool",
+          "toolDescription": "work with your data using postgress pgvector extension",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+        "typeVersion": 1.3,
+        "position": [
+          1488,
+          -128
+        ],
+        "id": "80b62848-76eb-42c0-a42c-eb6f31631f1c",
+        "name": "Postgres PGVector Store",
+        "credentials": {
+          "postgres": {
+            "id": "YLCL3GSvIzqQpMMB",
+            "name": "My N8N Database"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          1568,
+          0
+        ],
+        "id": "47853b8b-245f-4d2b-9099-b4462a7a0178",
+        "name": "Embeddings Google Gemini",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "wZuLC2RdDp5qitbQ",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "schema": {
+            "__rl": true,
+            "value": "public",
+            "mode": "list",
+            "cachedResultName": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "=n8n_chat_histories",
+            "mode": "name"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [
+              "id"
+            ],
+            "schema": [
+              {
+                "id": "id",
+                "displayName": "id",
+                "required": false,
+                "defaultMatch": true,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "session_id",
+                "displayName": "session_id",
+                "required": true,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "message",
+                "displayName": "message",
+                "required": true,
+                "defaultMatch": false,
+                "display": true,
+                "type": "object",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgresTool",
+        "typeVersion": 2.6,
+        "position": [
+          1184,
+          -128
+        ],
+        "id": "1a6282ae-1afe-463a-875c-a33c444b3bea",
+        "name": "Update rows in a table in Postgres",
+        "credentials": {
+          "postgres": {
+            "id": "nP811raYks1s5nMl",
+            "name": "n8n database"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "n8n_chat_histories",
+            "mode": "list",
+            "cachedResultName": "n8n_chat_histories"
+          },
+          "columns": {
+            "mappingMode": "autoMapInputData",
+            "value": {},
+            "matchingColumns": [
+              "id"
+            ],
+            "schema": [
+              {
+                "id": "id",
+                "displayName": "id",
+                "required": false,
+                "defaultMatch": true,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "session_id",
+                "displayName": "session_id",
+                "required": true,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": false
+              },
+              {
+                "id": "message",
+                "displayName": "message",
+                "required": true,
+                "defaultMatch": false,
+                "display": true,
+                "type": "object",
+                "canBeUsedToMatch": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgresTool",
+        "typeVersion": 2.6,
+        "position": [
+          1328,
+          -128
+        ],
+        "id": "b0bd12c9-d615-44ef-9f57-52e3d417e9c7",
+        "name": "Insert or update rows in a table in Postgres",
+        "credentials": {
+          "postgres": {
+            "id": "nP811raYks1s5nMl",
+            "name": "n8n database"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "path": "gmail"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          -944,
+          -384
+        ],
+        "id": "0b912830-d6bb-4cac-98d6-4a97d38cf40d",
+        "name": "gmail tools",
+        "webhookId": "370b8ac9-ec1c-4e6f-80a6-0bf095efa6b4"
+      },
+      {
+        "parameters": {
+          "operation": "addLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+          "labelIds": [
+            "Label_8622164734475250154"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -1136,
+          -224
+        ],
+        "id": "ae33d534-1157-48d4-84c2-86b7db74044a",
+        "name": "add Personal Label",
+        "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "SQjQESRGfbvsewnr",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "addLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+          "labelIds": [
+            "Label_6945315197989729641"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -976,
+          -224
+        ],
+        "id": "3f092bd1-b3cf-4d49-aaf1-634d7f084905",
+        "name": "add Work & Study Label",
+        "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "SQjQESRGfbvsewnr",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "addLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+          "labelIds": [
+            "Label_5984747447549941547"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -816,
+          -224
+        ],
+        "id": "0db6f98e-a8d0-46cd-826d-698454b5b15c",
+        "name": "add Services & Subscirptions Label",
+        "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "SQjQESRGfbvsewnr",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "removeLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `use the message id received`, 'string') }}",
+          "labelIds": [
+            "INBOX"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -656,
+          -224
+        ],
+        "id": "b558c89f-963c-4899-afd4-cfdd6bf8eed9",
+        "name": "remove from INBOX",
+        "webhookId": "aa764227-c35c-4ed6-ae61-de795982e4f4",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "SQjQESRGfbvsewnr",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "path": "gmail1"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          -944,
+          -48
+        ],
+        "id": "f7163670-2ee1-46b7-ac1e-e8b3ffdbf642",
+        "name": "gmail tools1",
+        "webhookId": "370b8ac9-ec1c-4e6f-80a6-0bf095efa6b4"
+      },
+      {
+        "parameters": {
+          "operation": "addLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+          "labelIds": [
+            "Label_9046537389594423072"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -1136,
+          128
+        ],
+        "id": "f22c8345-eb42-4517-98cd-3ef0ab754d2d",
+        "name": "add Personal Label1",
+        "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "KnabIph0yBl2wWR3",
+            "name": "hanzmanaog101@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "addLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+          "labelIds": [
+            "Label_2757083659783760408"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -976,
+          128
+        ],
+        "id": "777ae29a-ac63-4418-b013-13422a59bf7e",
+        "name": "add Work & Study Label1",
+        "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "KnabIph0yBl2wWR3",
+            "name": "hanzmanaog101@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "addLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+          "labelIds": [
+            "Label_7705551783799065887"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -816,
+          128
+        ],
+        "id": "9478d513-8c4f-4dc1-8209-febcdc030586",
+        "name": "add Services & Subscirptions Label1",
+        "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "KnabIph0yBl2wWR3",
+            "name": "hanzmanaog101@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "removeLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `use the message id received`, 'string') }}",
+          "labelIds": [
+            "INBOX"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -656,
+          128
+        ],
+        "id": "67b00a50-197e-4fa9-93ea-3505def94f10",
+        "name": "remove from INBOX1",
+        "webhookId": "aa764227-c35c-4ed6-ae61-de795982e4f4",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "KnabIph0yBl2wWR3",
+            "name": "hanzmanaog101@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "path": "gmail2"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          -944,
+          320
+        ],
+        "id": "60f2bc5a-7d43-4a9b-94f2-6a5b67d51118",
+        "name": "gmail tools2",
+        "webhookId": "370b8ac9-ec1c-4e6f-80a6-0bf095efa6b4"
+      },
+      {
+        "parameters": {
+          "operation": "addLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+          "labelIds": [
+            "Label_8410731410158343503"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -1136,
+          480
+        ],
+        "id": "803ead67-c227-4332-9225-ca65f1d526b5",
+        "name": "add Personal Label2",
+        "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "nDZ7cParZGSPezD9",
+            "name": "hanzphilip.manaog@email.lcup.edu.ph"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "addLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+          "labelIds": [
+            "Label_7124345992120683373"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -976,
+          480
+        ],
+        "id": "917d5564-852c-4a35-af9b-f01be1d387d6",
+        "name": "add Work & Study Label2",
+        "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "nDZ7cParZGSPezD9",
+            "name": "hanzphilip.manaog@email.lcup.edu.ph"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "addLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `Use the same message id received`, 'string') }}",
+          "labelIds": [
+            "Label_1570897442208458164"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -816,
+          480
+        ],
+        "id": "358f4d42-e3bc-42cf-8c94-1474997d982f",
+        "name": "add Services & Subscirptions Label2",
+        "webhookId": "6091e3f7-7174-41cb-a6e4-0e421e614e71",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "nDZ7cParZGSPezD9",
+            "name": "hanzphilip.manaog@email.lcup.edu.ph"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "removeLabels",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', `use the message id received`, 'string') }}",
+          "labelIds": [
+            "INBOX"
+          ]
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          -656,
+          480
+        ],
+        "id": "ab1b0418-a3ba-4900-973f-f1fdc092eb9f",
+        "name": "remove from INBOX2",
+        "webhookId": "aa764227-c35c-4ed6-ae61-de795982e4f4",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "nDZ7cParZGSPezD9",
+            "name": "hanzphilip.manaog@email.lcup.edu.ph"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "path": "fileM"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          -16,
+          -368
+        ],
+        "id": "6704cafd-c500-47f1-b95b-4780e34526ce",
+        "name": "File Management",
+        "webhookId": "a622f8ea-1c24-4cf4-8ffe-6a33c417d442"
+      },
+      {
+        "parameters": {
+          "driveId": {
+            "__rl": true,
+            "mode": "list",
+            "value": "My Drive"
+          },
+          "folderId": {
+            "__rl": true,
+            "value": "https://drive.google.com/drive/u/0/folders/1rq8Aohh450xraqhHHLy_So1Kg-Hpvojc",
+            "mode": "url"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDriveTool",
+        "typeVersion": 3,
+        "position": [
+          -208,
+          -208
+        ],
+        "id": "751f41e8-7957-4a16-aaac-ece9280e4b2a",
+        "name": "Upload file in Google Drive",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "ljpoFxX9JuE7xZ8G",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "createFromText",
+          "content": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File_Content', ``, 'string') }}",
+          "driveId": {
+            "__rl": true,
+            "mode": "list",
+            "value": "My Drive"
+          },
+          "folderId": {
+            "__rl": true,
+            "value": "https://drive.google.com/drive/u/0/folders/1rq8Aohh450xraqhHHLy_So1Kg-Hpvojc",
+            "mode": "url"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDriveTool",
+        "typeVersion": 3,
+        "position": [
+          528,
+          -208
+        ],
+        "id": "72a5d0fa-bdd3-48b6-855d-ee6ae18055a2",
+        "name": "Create file from text in Google Drive",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "ljpoFxX9JuE7xZ8G",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "deleteFile",
+          "fileId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File', ``, 'string') }}",
+            "mode": "id"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDriveTool",
+        "typeVersion": 3,
+        "position": [
+          -64,
+          -208
+        ],
+        "id": "5a0805cf-3298-4977-9808-62f79f2e2360",
+        "name": "Delete a file in Google Drive",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "ljpoFxX9JuE7xZ8G",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "download",
+          "fileId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File', ``, 'string') }}",
+            "mode": "id"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDriveTool",
+        "typeVersion": 3,
+        "position": [
+          64,
+          -208
+        ],
+        "id": "0e1b326d-527c-4b03-9de1-236128f03aa5",
+        "name": "Download file in Google Drive",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "ljpoFxX9JuE7xZ8G",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "fileId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File_to_Update', ``, 'string') }}",
+            "mode": "id"
+          },
+          "changeFileContent": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Change_File_Content', ``, 'boolean') }}",
+          "newUpdatedFileName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('New_Updated_File_Name', ``, 'string') }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDriveTool",
+        "typeVersion": 3,
+        "position": [
+          240,
+          -208
+        ],
+        "id": "f70c16f5-956e-4a1a-be89-57acff26ddae",
+        "name": "Update file in Google Drive",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "ljpoFxX9JuE7xZ8G",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "move",
+          "fileId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('File', ``, 'string') }}",
+            "mode": "id"
+          },
+          "driveId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Parent_Drive', ``, 'string') }}",
+            "mode": "id"
+          },
+          "folderId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Parent_Folder', ``, 'string') }}",
+            "mode": "id"
+          }
+        },
+        "type": "n8n-nodes-base.googleDriveTool",
+        "typeVersion": 3,
+        "position": [
+          384,
+          -208
+        ],
+        "id": "ffa91174-1d7f-449f-8684-505cd9abec9e",
+        "name": "Move file in Google Drive",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "ljpoFxX9JuE7xZ8G",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "folderId": "1DObVpQlyzpGSt3Xa6H9vfQaHe0LopziY",
+          "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}"
+        },
+        "type": "n8n-nodes-base.googleDocsTool",
+        "typeVersion": 2,
+        "position": [
+          -208,
+          144
+        ],
+        "id": "d44fabc9-9aa0-4e41-a681-4200b5f904ce",
+        "name": "Create a document in Google Docs",
+        "credentials": {
+          "googleDocsOAuth2Api": {
+            "id": "8z46XTqkT0WZzmfY",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "resource": "spreadsheet",
+          "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}",
+          "sheetsUi": {
+            "sheetValues": [
+              {
+                "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('sheetValues0_Title', ``, 'string') }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.6,
+        "position": [
+          -64,
+          -16
+        ],
+        "id": "0128ec72-90f7-44df-ac1f-2ef8af46a749",
+        "name": "Create spreadsheet in Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "AaDTfoewRTDvJqmq",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+            "mode": "id"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.6,
+        "position": [
+          240,
+          -16
+        ],
+        "id": "1f592f9e-91c7-496b-9590-cee768f6d19f",
+        "name": "Get row(s) in sheet in Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "AaDTfoewRTDvJqmq",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+            "mode": "id"
+          },
+          "columns": {
+            "mappingMode": "autoMapInputData",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.6,
+        "position": [
+          64,
+          -16
+        ],
+        "id": "d9ea7cc9-cffd-4269-9844-9cddfbec8b2f",
+        "name": "Append or update row in sheet in Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "AaDTfoewRTDvJqmq",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "delete",
+          "documentId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+            "mode": "id"
+          },
+          "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+          "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.6,
+        "position": [
+          528,
+          -16
+        ],
+        "id": "ebe81cf8-1841-4b95-ae19-cc009ce0569d",
+        "name": "Delete rows or columns from sheet in Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "AaDTfoewRTDvJqmq",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "delete",
+          "documentId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+            "mode": "id"
+          },
+          "toDelete": "columns",
+          "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Column', ``, 'string') }}",
+          "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Columns_to_Delete', ``, 'number') }}"
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.6,
+        "position": [
+          384,
+          -16
+        ],
+        "id": "dae5499f-6c46-4e83-a5b6-1a7042f3a5a2",
+        "name": "Delete rows or columns from sheet in Google Sheets1",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "AaDTfoewRTDvJqmq",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "remove",
+          "documentId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+            "mode": "id"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+            "mode": "id"
+          }
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.6,
+        "position": [
+          -208,
+          -16
+        ],
+        "id": "eb33faed-2751-4cde-a8f8-d6880c4fa7b1",
+        "name": "Delete sheet in Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "AaDTfoewRTDvJqmq",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "path": "calendar"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          -208,
+          352
+        ],
+        "id": "d55542ee-d7b9-430b-acdc-29be49f09907",
+        "name": "Calendar",
+        "webhookId": "6eb8cbe2-dace-444f-be6e-b01815559e33"
+      },
+      {
+        "parameters": {
+          "resource": "calendar",
+          "calendar": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+            "mode": "id",
+            "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+          },
+          "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Time', ``, 'string') }}",
+          "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_Time', ``, 'string') }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleCalendarTool",
+        "typeVersion": 1.3,
+        "position": [
+          -288,
+          528
+        ],
+        "id": "f3bd9147-1646-4e10-abb9-dbc87f540dec",
+        "name": "Get availability in a calendar in Google Calendar",
+        "credentials": {
+          "googleCalendarOAuth2Api": {
+            "id": "gJTWSYjHOg1WyQse",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "calendar": {
+            "__rl": true,
+            "value": "manaoghanzphilip@gmail.com",
+            "mode": "list",
+            "cachedResultName": "manaoghanzphilip@gmail.com"
+          },
+          "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+          "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+          "useDefaultReminders": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Use_Default_Reminders', ``, 'boolean') }}",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.googleCalendarTool",
+        "typeVersion": 1.3,
+        "position": [
+          -144,
+          528
+        ],
+        "id": "58049ae4-10c4-41d1-82a9-20dbf1a49381",
+        "name": "Create an event in Google Calendar",
+        "credentials": {
+          "googleCalendarOAuth2Api": {
+            "id": "gJTWSYjHOg1WyQse",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "getAll",
+          "calendar": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+            "mode": "id",
+            "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+          },
+          "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+          "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+          "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleCalendarTool",
+        "typeVersion": 1.3,
+        "position": [
+          48,
+          528
+        ],
+        "id": "80407103-e7de-4f10-b160-da36a4a949d5",
+        "name": "Get many events in Google Calendar",
+        "credentials": {
+          "googleCalendarOAuth2Api": {
+            "id": "gJTWSYjHOg1WyQse",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "delete",
+          "calendar": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+            "mode": "id",
+            "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+          },
+          "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleCalendarTool",
+        "typeVersion": 1.3,
+        "position": [
+          144,
+          528
+        ],
+        "id": "40a3e78a-27d6-46b6-86f2-5c7047da54f7",
+        "name": "Delete an event in Google Calendar",
+        "credentials": {
+          "googleCalendarOAuth2Api": {
+            "id": "gJTWSYjHOg1WyQse",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "calendar": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+            "mode": "id",
+            "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+          },
+          "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleCalendarTool",
+        "typeVersion": 1.3,
+        "position": [
+          -144,
+          688
+        ],
+        "id": "50af1aa9-a784-4726-be86-6a020c7be4db",
+        "name": "Get an event in Google Calendar",
+        "credentials": {
+          "googleCalendarOAuth2Api": {
+            "id": "gJTWSYjHOg1WyQse",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "calendar": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+            "mode": "id",
+            "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+          },
+          "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+          "useDefaultReminders": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Use_Default_Reminders', ``, 'boolean') }}",
+          "updateFields": {}
+        },
+        "type": "n8n-nodes-base.googleCalendarTool",
+        "typeVersion": 1.3,
+        "position": [
+          48,
+          688
+        ],
+        "id": "cad0816e-9dbf-418f-b596-22310dd670d3",
+        "name": "Update an event in Google Calendar",
+        "credentials": {
+          "googleCalendarOAuth2Api": {
+            "id": "gJTWSYjHOg1WyQse",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "path": "myemail"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          464,
+          352
+        ],
+        "id": "33e06c94-3ba8-4669-a9c8-ec0f02428a33",
+        "name": "My email (gmail)",
+        "webhookId": "a10befb0-f637-4a2e-9c28-838f7428c135"
+      },
+      {
+        "parameters": {
+          "operation": "getAll",
+          "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+          "simple": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Simplify', ``, 'boolean') }}",
+          "filters": {},
+          "options": {}
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          464,
+          512
+        ],
+        "id": "86814557-ca18-4208-b52b-624b12fb285c",
+        "name": "Get many messages in Gmail",
+        "webhookId": "6e5c8f06-980e-4254-9960-e02fb1693aa9",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "SQjQESRGfbvsewnr",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "markAsRead",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          464,
+          672
+        ],
+        "id": "92eb8a6e-56ae-476b-9ef2-25c823b24022",
+        "name": "Mark a message as read in Gmail",
+        "webhookId": "2a7f5141-618a-4b66-b63c-bfb8a67c71c8",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "SQjQESRGfbvsewnr",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "markAsUnread",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          592,
+          560
+        ],
+        "id": "9ad2c3ef-9cc6-44fb-abc4-d4774efe4980",
+        "name": "Mark a message as unread in Gmail",
+        "webhookId": "040f3cec-fe32-40eb-b905-d891901081b1",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "SQjQESRGfbvsewnr",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "path": "portfolio"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          960,
+          352
+        ],
+        "id": "633d4531-4b69-42c5-b846-2b07360ebdfc",
+        "name": "portfolioMCP",
+        "webhookId": "484f06d0-e9eb-4b49-8240-002bd3be4ed5"
+      },
+      {
+        "parameters": {
+          "url": "https://hanzportfolio.safehub-lcup.uk/",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequestTool",
+        "typeVersion": 4.2,
+        "position": [
+          960,
+          544
+        ],
+        "id": "6ecfcdf8-66a7-437e-8c98-c7ed78a4b654",
+        "name": "hanz website portfolio"
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "SELECT id, title, details\nFROM myProjects;",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySqlTool",
+        "typeVersion": 2.5,
+        "position": [
+          1104,
+          640
+        ],
+        "id": "b090e803-1cf8-4212-8d2c-cdae85bc5fc5",
+        "name": "hanzProjects",
+        "credentials": {
+          "mySql": {
+            "id": "CwqMbq3EowXG7dzv",
+            "name": "MySQL account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "myContacts",
+            "mode": "list",
+            "cachedResultName": "myContacts"
+          },
+          "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySqlTool",
+        "typeVersion": 2.5,
+        "position": [
+          1248,
+          640
+        ],
+        "id": "0b7fe25a-5bf6-4e41-a7e9-f8eb70819532",
+        "name": "hanzContacts",
+        "credentials": {
+          "mySql": {
+            "id": "CwqMbq3EowXG7dzv",
+            "name": "MySQL account"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+        "typeVersion": 1,
+        "position": [
+          688,
+          -512
+        ],
+        "id": "bc76e540-5e3e-4b20-a116-61f7f03e165e",
+        "name": "Calculator1"
+      },
+      {
+        "parameters": {
+          "descriptionType": "manual",
+          "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-searxng.searxngTool",
+        "typeVersion": 1,
+        "position": [
+          800,
+          -512
+        ],
+        "id": "ca66fe74-eb70-4d5d-b4b7-a0363c52f13d",
+        "name": "Searxng1",
+        "credentials": {
+          "searxngApi": {
+            "id": "dvvuxd1THmHuLc4Z",
+            "name": "Searxng account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "includeTime": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Include_Current_Time', ``, 'boolean') }}",
+          "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
+          "options": {
+            "timezone": "Asia/Manila"
+          }
+        },
+        "type": "n8n-nodes-base.dateTimeTool",
+        "typeVersion": 2,
+        "position": [
+          912,
+          -512
+        ],
+        "id": "0efa1e78-c505-4a9e-8737-e3d028ab7493",
+        "name": "Date & Time1"
+      },
+      {
+        "parameters": {
+          "path": "dietTools"
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+        "typeVersion": 2,
+        "position": [
+          688,
+          -688
+        ],
+        "id": "fbf6c056-0797-44e7-b756-773612c108a7",
+        "name": "Diet Tools",
+        "webhookId": "0c4e7470-d9f5-4d08-a2fa-c99392966ac6"
+      }
+    ],
+    "connections": {
+      "Calculator": {
+        "ai_tool": [
+          [
+            {
+              "node": "BASIC TOOLS",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Searxng": {
+        "ai_tool": [
+          [
+            {
+              "node": "BASIC TOOLS",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Date & Time": {
+        "ai_tool": [
+          [
+            {
+              "node": "BASIC TOOLS",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Postgres PGVector Store": {
+        "ai_tool": [
+          [
+            {
+              "node": "database",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Embeddings Google Gemini": {
+        "ai_embedding": [
+          [
+            {
+              "node": "Postgres PGVector Store",
+              "type": "ai_embedding",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update rows in a table in Postgres": {
+        "ai_tool": [
+          [
+            {
+              "node": "database",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Insert or update rows in a table in Postgres": {
+        "ai_tool": [
+          [
+            {
+              "node": "database",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "add Personal Label": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "add Work & Study Label": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "add Services & Subscirptions Label": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "remove from INBOX": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "add Personal Label1": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools1",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "add Work & Study Label1": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools1",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "add Services & Subscirptions Label1": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools1",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "remove from INBOX1": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools1",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "add Personal Label2": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools2",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "add Work & Study Label2": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools2",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "add Services & Subscirptions Label2": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools2",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "remove from INBOX2": {
+        "ai_tool": [
+          [
+            {
+              "node": "gmail tools2",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Upload file in Google Drive": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create file from text in Google Drive": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Delete a file in Google Drive": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Download file in Google Drive": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update file in Google Drive": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Move file in Google Drive": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create a document in Google Docs": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create spreadsheet in Google Sheets": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get row(s) in sheet in Google Sheets": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append or update row in sheet in Google Sheets": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Delete rows or columns from sheet in Google Sheets": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Delete rows or columns from sheet in Google Sheets1": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Delete sheet in Google Sheets": {
+        "ai_tool": [
+          [
+            {
+              "node": "File Management",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get availability in a calendar in Google Calendar": {
+        "ai_tool": [
+          [
+            {
+              "node": "Calendar",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create an event in Google Calendar": {
+        "ai_tool": [
+          [
+            {
+              "node": "Calendar",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get many events in Google Calendar": {
+        "ai_tool": [
+          [
+            {
+              "node": "Calendar",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Delete an event in Google Calendar": {
+        "ai_tool": [
+          [
+            {
+              "node": "Calendar",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get an event in Google Calendar": {
+        "ai_tool": [
+          [
+            {
+              "node": "Calendar",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update an event in Google Calendar": {
+        "ai_tool": [
+          [
+            {
+              "node": "Calendar",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get many messages in Gmail": {
+        "ai_tool": [
+          [
+            {
+              "node": "My email (gmail)",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Mark a message as read in Gmail": {
+        "ai_tool": [
+          [
+            {
+              "node": "My email (gmail)",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Mark a message as unread in Gmail": {
+        "ai_tool": [
+          [
+            {
+              "node": "My email (gmail)",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "hanz website portfolio": {
+        "ai_tool": [
+          [
+            {
+              "node": "portfolioMCP",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "hanzProjects": {
+        "ai_tool": [
+          [
+            {
+              "node": "portfolioMCP",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "hanzContacts": {
+        "ai_tool": [
+          [
+            {
+              "node": "portfolioMCP",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Calculator1": {
+        "ai_tool": [
+          [
+            {
+              "node": "Diet Tools",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Searxng1": {
+        "ai_tool": [
+          [
+            {
+              "node": "Diet Tools",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Date & Time1": {
+        "ai_tool": [
+          [
+            {
+              "node": "Diet Tools",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hanz Philip Manaog",
+    "name": "Version 00a997ef",
+    "description": "",
+    "autosaved": false
+  },
+  "tags": []
+}
