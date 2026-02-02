@@ -1,0 +1,491 @@
+{
+  "updatedAt": "2025-10-26T15:55:12.000Z",
+  "createdAt": "2025-10-18T13:34:19.057Z",
+  "id": "SSVnJTYIDhgtCZBG",
+  "name": "portfolioChatbot",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "toChatbot",
+        "authentication": "jwtAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "babe4bda-90cd-4ed4-b509-33528ec705b7",
+      "name": "Webhook",
+      "webhookId": "9c28d3bc-dcd6-47a7-b134-2ffd8d7f9376",
+      "credentials": {
+        "jwtAuth": {
+          "id": "6WyWXXG1fCfxbkdx",
+          "name": "JWT Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.jwtPayload.message }}",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "=<identity>\n  You are a helpful assistant chatbot.\n  You are a chatbot for the portfolio website of Hanz Philip Manaog.\n  You are currently included in Hanz' portfolio website as a feature.\n</identity>\n\n<task>\n  Your task is to answer relevant questions about Hanz Philip and his portfolio.\n  Make sure your answers are short but clear.\n</task>\n\n<rules>\n  You will decline any request that may harm a person and about nsfw.\n  You will format your response using html.\n  Use styles like bold, underline, itallic and others when needed to properly highlight your answer for easier reading.\n  You are allowed to use emojis, but use them properly.\n  Use all the tools you have to properly answer.\n</rules>\n\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        0
+      ],
+      "id": "691998a3-963e-4543-b2b3-73cd9da79df1",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        912,
+        0
+      ],
+      "id": "cf2ca4a4-7ac6-494c-91eb-a0b35e0e9281",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        432,
+        208
+      ],
+      "id": "1b4656b2-293e-47cf-bcf0-07628a2d6560",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wZuLC2RdDp5qitbQ",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://hanzn8n.safehub-lcup.uk/mcp/portfolio",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        848,
+        208
+      ],
+      "id": "f65b7eca-1c2c-438c-8a4a-c32931c413a0",
+      "name": "Portfolio tools"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        560,
+        208
+      ],
+      "id": "2d44c36e-c993-476b-9151-298a3614d56a",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "TVGhdsUO5gawa727",
+          "name": "hanzmanaog101@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        16,
+        -160
+      ],
+      "id": "08d3239a-bd77-47d9-ad5d-8b24d407d4b7",
+      "name": "When chat message received",
+      "webhookId": "b3c2257d-680c-4947-bac4-045cf0c18032"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d93223c3-5d7a-4ebe-b347-b329f5c1594f",
+              "name": "jwtPayload.message",
+              "value": "={{ $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        -160
+      ],
+      "id": "3997dae6-156a-4a7e-92bf-c6ce0c5df440",
+      "name": "Edit Fields1"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Portfolio tools": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "34dc5c68-4de8-40be-81b4-814daa6b5624",
+  "activeVersionId": "34dc5c68-4de8-40be-81b4-814daa6b5624",
+  "triggerCount": 2,
+  "shared": [
+    {
+      "updatedAt": "2025-10-18T13:34:19.061Z",
+      "createdAt": "2025-10-18T13:34:19.061Z",
+      "role": "workflow:owner",
+      "workflowId": "SSVnJTYIDhgtCZBG",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2025-11-25T10:48:48.155Z",
+    "createdAt": "2025-11-25T10:48:48.155Z",
+    "versionId": "34dc5c68-4de8-40be-81b4-814daa6b5624",
+    "workflowId": "SSVnJTYIDhgtCZBG",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "toChatbot",
+          "authentication": "jwtAuth",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "babe4bda-90cd-4ed4-b509-33528ec705b7",
+        "name": "Webhook",
+        "webhookId": "9c28d3bc-dcd6-47a7-b134-2ffd8d7f9376",
+        "credentials": {
+          "jwtAuth": {
+            "id": "6WyWXXG1fCfxbkdx",
+            "name": "JWT Auth account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.jwtPayload.message }}",
+          "needsFallback": true,
+          "options": {
+            "systemMessage": "=<identity>\n  You are a helpful assistant chatbot.\n  You are a chatbot for the portfolio website of Hanz Philip Manaog.\n  You are currently included in Hanz' portfolio website as a feature.\n</identity>\n\n<task>\n  Your task is to answer relevant questions about Hanz Philip and his portfolio.\n  Make sure your answers are short but clear.\n</task>\n\n<rules>\n  You will decline any request that may harm a person and about nsfw.\n  You will format your response using html.\n  Use styles like bold, underline, itallic and others when needed to properly highlight your answer for easier reading.\n  You are allowed to use emojis, but use them properly.\n  Use all the tools you have to properly answer.\n</rules>\n\n\n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.2,
+        "position": [
+          560,
+          0
+        ],
+        "id": "691998a3-963e-4543-b2b3-73cd9da79df1",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.4,
+        "position": [
+          912,
+          0
+        ],
+        "id": "cf2ca4a4-7ac6-494c-91eb-a0b35e0e9281",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          432,
+          208
+        ],
+        "id": "1b4656b2-293e-47cf-bcf0-07628a2d6560",
+        "name": "Google Gemini Chat Model",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "wZuLC2RdDp5qitbQ",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "endpointUrl": "https://hanzn8n.safehub-lcup.uk/mcp/portfolio",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+        "typeVersion": 1.2,
+        "position": [
+          848,
+          208
+        ],
+        "id": "f65b7eca-1c2c-438c-8a4a-c32931c413a0",
+        "name": "Portfolio tools"
+      },
+      {
+        "parameters": {
+          "modelName": "models/gemini-2.0-flash",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          560,
+          208
+        ],
+        "id": "2d44c36e-c993-476b-9151-298a3614d56a",
+        "name": "Google Gemini Chat Model1",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "TVGhdsUO5gawa727",
+            "name": "hanzmanaog101@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          16,
+          -160
+        ],
+        "id": "08d3239a-bd77-47d9-ad5d-8b24d407d4b7",
+        "name": "When chat message received",
+        "webhookId": "b3c2257d-680c-4947-bac4-045cf0c18032"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "d93223c3-5d7a-4ebe-b347-b329f5c1594f",
+                "name": "jwtPayload.message",
+                "value": "={{ $json.chatInput }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          224,
+          -160
+        ],
+        "id": "3997dae6-156a-4a7e-92bf-c6ce0c5df440",
+        "name": "Edit Fields1"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Portfolio tools": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "When chat message received": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "tags": []
+}
