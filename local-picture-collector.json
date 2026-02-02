@@ -1,0 +1,1403 @@
+{
+  "updatedAt": "2025-08-12T09:28:23.000Z",
+  "createdAt": "2025-07-26T15:31:06.601Z",
+  "id": "WWJNDQPC2X4wyije",
+  "name": "local picture collector",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        672
+      ],
+      "id": "c4d65e04-b8ee-4774-adc2-8b6c991d6d72",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(jpeg|JPEG|jpg|JPG|png|PNG|gif|GIF|bmp|BMP|tiff|TIFF|webp|WEBP|svg|SVG)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    },
+                    "id": "df5420f7-8d9d-450b-9a17-53da6e59e444"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "images"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "aa7cf998-df06-437e-a9fd-66694cef5a94",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(mp4|MP4|mov|MOV|avi|AVI|mkv|MKV|flv|FLV|wmv|WMV|webm|WEBM|3gp|3GP)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "videos"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e2d0be70-4b7d-4b83-9081-d6b615f81b16",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(mp3|MP3|wav|WAV|flac|FLAC|aac|AAC|ogg|OGG|wma|WMA|m4a|M4A)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audios"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4e1cacdd-d736-4ef9-a821-ff5a976707b5",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(pdf|PDF|doc|DOC|docx|DOCX|xls|XLS|xlsx|XLSX|ppt|PPT|pptx|PPTX|txt|TXT|rtf|RTF|odt|ODT|ods|ODS|odp|ODP)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "documents"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "444faa7c-7262-425c-9b1f-939f10dc9520",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(zip|ZIP|rar|RAR|7z|7Z|tar|TAR|gz|GZ|bz2|BZ2|xz|XZ)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "archives"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fcc7bb1f-55a3-4e89-9273-cf68447efd3c",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(exe|EXE|apk|APK|msi|MSI|bat|BAT|sh|SH|bin|BIN|dmg|DMG)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "executables"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "387442cb-51a5-4daa-94a1-0f11bcfba6c1",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "empty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "folders"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        176,
+        -96
+      ],
+      "id": "443e0396-bd9e-4890-83ac-842c47ebf297",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "lastModifiedAtEpoch"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        0
+      ],
+      "id": "3b7015ba-146e-4a4b-bbe2-bf6b8e8ba70b",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "maxItems": "={{ $json.totalcount - 10 }}"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        192
+      ],
+      "id": "dc9a4fde-956c-4942-81a3-cc3dd2125369",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "command": "ls -l \"/mnt/E_drive/Back-up\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -192
+      ],
+      "id": "219382a9-5a92-49d7-aca8-0acb32e7226e",
+      "name": "get metadata"
+    },
+    {
+      "parameters": {
+        "jsCode": "const output = items[0].json.stdout; // Get the raw output from ls -l\nconst lines = output.split('\\n').filter(line => line.length > 0 && !line.startsWith('total'));\n\nconst structuredItems = [];\n\nfor (const line of lines) {\n    // Example line: -rw-r--r--    1 root     root         68579 Jul 29 10:00 myimage.png\n    // Example dir: drwxr-xr-x    2 root     root          4096 Jul 29 10:00 MyFolder\n\n    const parts = line.split(/\\s+/); // Split by one or more spaces\n\n    // Basic check for expected number of parts in an ls -l output\n    if (parts.length < 8) {\n        console.warn(\"Skipping malformed line (too few parts):\", line);\n        continue;\n    }\n\n    const permissions = parts[0];\n    const isDirectory = permissions.startsWith('d');\n    const sizeBytes = parseInt(parts[4], 10);\n\n    // Month, Day, Time/Year (e.g., Jul, 29, 10:00 or Jul, 29, 2024)\n    const month = parts[5];\n    const day = parts[6];\n    const timeOrYear = parts[7];\n\n    let fileName = parts.slice(8).join(' '); // Re-join filename if it had spaces\n\n    // Construct full path\n    const fullPath = `/mnt/E_drive/Back-up/${fileName}`;\n\n    // Attempt to parse date (this is simplified and might need refinement for edge cases)\n    // For accurate sorting, consider parsing to a Date object or epoch timestamp\n    let lastModifiedAtEpoch = null;\n    try {\n        // BusyBox ls -l might not give year for current year, just time (e.g., \"Jul 29 10:00\")\n        // Or it might give year for past years (e.g., \"Jul 29 2023\")\n        let dateString = `${month} ${day} ${timeOrYear}`;\n        let year = new Date().getFullYear(); // Assume current year if time is given\n\n        if (!timeOrYear.includes(':')) { // If it's a year, not a time\n            year = parseInt(timeOrYear, 10);\n            dateString = `${month} ${day} ${year}`;\n        } else {\n            // If time is given, assume current year unless it's in the future, then prev year\n            // This is a common heuristic but can be fragile around year end.\n            // For critical date parsing, using 'stat' would be better if available.\n            let tempDate = new Date(`${dateString} ${year}`);\n            if (tempDate.getTime() > Date.now()) { // If the date is in the future, it must be last year\n                year--;\n            }\n            dateString = `${month} ${day} ${year} ${timeOrYear}`; // Add the time back for parsing\n        }\n        lastModifiedAtEpoch = new Date(dateString).getTime(); // Milliseconds since epoch\n    } catch (e) {\n        console.warn(\"Could not parse date for line:\", line, e.message);\n    }\n\n    const fileExtension = isDirectory ? '' : (fileName.includes('.') ? fileName.substring(fileName.lastIndexOf('.') + 1) : '');\n\n    structuredItems.push({\n        json: {\n            path: fullPath,\n            fileName: fileName,\n            isDir: isDirectory,\n            sizeBytes: sizeBytes,\n            lastModifiedAtEpoch: lastModifiedAtEpoch, // For sorting\n            lastModifiedAtReadable: `${month} ${day} ${timeOrYear}`, // Original string for display\n            fileExtension: fileExtension\n        }\n    });\n}\n\nreturn structuredItems;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -176,
+        -192
+      ],
+      "id": "b76cf26f-ff51-4118-bb6f-f76b64f6e675",
+      "name": "arrange metadata"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b86e576f-6688-4d6f-b50b-2cb602145982",
+              "name": "totalcount",
+              "value": "={{ $input.all().length }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -336,
+        192
+      ],
+      "id": "f628a922-3237-4b42-99a8-576da35ffc59",
+      "name": "add total count"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=mv \"/mnt/E_drive/Back-up/{{ $json.fileName }}\" \"/mnt/E_drive/Back-up/VIDEOS/{{ $json.fileName }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        432,
+        -64
+      ],
+      "id": "7ab86485-7c61-4d2e-858c-37f10d92a8fa",
+      "name": "move to VIDEOS folder"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=mv \"/mnt/E_drive/Back-up/{{ $json.fileName }}\" \"/mnt/E_drive/Back-up/IMAGES/{{ $json.fileName }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        432,
+        -208
+      ],
+      "id": "3c8ef403-764f-49cb-acfc-24946fd8d6c4",
+      "name": "move to IMAGES folder"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=mv \"/mnt/E_drive/Back-up/{{ $json.fileName }}\" \"/mnt/E_drive/Back-up/AUDIOS/{{ $json.fileName }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        432,
+        80
+      ],
+      "id": "bdc8e257-3f68-4264-87df-f4a02838b3a8",
+      "name": "move to AUDIOS folder"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=mv \"/mnt/E_drive/Back-up/{{ $json.fileName }}\" \"/mnt/E_drive/Back-up/DOCUMENTS/{{ $json.fileName }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        432,
+        224
+      ],
+      "id": "df76e483-74a9-4d25-b243-8c1b17d2aa01",
+      "name": "move to DOCUMENTS folder"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=mv \"/mnt/E_drive/Back-up/{{ $json.fileName }}\" \"/mnt/E_drive/Back-up/ARCHIVES/{{ $json.fileName }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        704,
+        -208
+      ],
+      "id": "15c018f9-ed6a-4096-a423-14683774a8ac",
+      "name": "move to ARCHIVES folder"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=mv \"/mnt/E_drive/Back-up/{{ $json.fileName }}\" \"/mnt/E_drive/Back-up/EXECUTABLES/{{ $json.fileName }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        704,
+        -64
+      ],
+      "id": "37ed53d7-f7da-4a5d-9003-9648456e101e",
+      "name": "move to EXECUTABLES folder"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=mv \"/mnt/E_drive/Back-up/{{ $json.fileName }}\" \"/mnt/E_drive/Back-up/FOLDERS/{{ $json.fileName }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        704,
+        80
+      ],
+      "id": "69919183-92ee-4654-bbd6-55d721bbdcdc",
+      "name": "move to FOLDERS folder"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=mv \"/mnt/E_drive/Back-up/{{ $json.fileName }}\" \"/mnt/E_drive/Back-up/OTHERS/{{ $json.fileName }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        704,
+        224
+      ],
+      "id": "f69930c8-7921-40c9-9433-8f696322a9d2",
+      "name": "move to OTHERS folder"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a530ebd6-a980-4438-8ea5-b540703aa553",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "IMAGES",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "e8c1f40a-5c1f-4b11-8842-77a0350ab954",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "VIDEOS",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "575d72a5-093c-48f6-8197-3f680ccfd771",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "AUDIOS",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "46bde725-5eeb-45f1-b8d5-4a60c2699fd7",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "DOCUMENTS",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "09db7843-7b0e-4917-ad70-3a2298de593d",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "ARCHIVES",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "6a71804f-6543-452f-b326-3a76feea6517",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "EXECUTABLES",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "ec42cae7-c7ed-436a-95cd-e6a98f507206",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "FOLDERS",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "fcb7b7e0-68ed-48c4-9817-a22b46412d85",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "OTHERS",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "998c51db-6341-4987-9f3e-61c6bc909fc5",
+              "leftValue": "={{ $json.fileExtension }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -176,
+        0
+      ],
+      "id": "5fdcdb1e-ffac-4d4b-bb6b-8ff869bc0731",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "triggerOn": "folder",
+        "path": "/mnt/E_drive/Back-up/",
+        "events": [
+          "add"
+        ],
+        "options": {
+          "usePolling": true
+        }
+      },
+      "type": "n8n-nodes-base.localFileTrigger",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        -368
+      ],
+      "id": "df7606e7-796f-45d1-be0f-c80f070bd7b1",
+      "name": "Local File Trigger"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(jpeg|JPEG|jpg|JPG|png|PNG|gif|GIF|bmp|BMP|tiff|TIFF|webp|WEBP|svg|SVG)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    },
+                    "id": "df5420f7-8d9d-450b-9a17-53da6e59e444"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "images"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "aa7cf998-df06-437e-a9fd-66694cef5a94",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(mp4|MP4|mov|MOV|avi|AVI|mkv|MKV|flv|FLV|wmv|WMV|webm|WEBM|3gp|3GP)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "videos"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e2d0be70-4b7d-4b83-9081-d6b615f81b16",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(mp3|MP3|wav|WAV|flac|FLAC|aac|AAC|ogg|OGG|wma|WMA|m4a|M4A)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audios"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4e1cacdd-d736-4ef9-a821-ff5a976707b5",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(pdf|PDF|doc|DOC|docx|DOCX|xls|XLS|xlsx|XLSX|ppt|PPT|pptx|PPTX|txt|TXT|rtf|RTF|odt|ODT|ods|ODS|odp|ODP)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "documents"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "444faa7c-7262-425c-9b1f-939f10dc9520",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(zip|ZIP|rar|RAR|7z|7Z|tar|TAR|gz|GZ|bz2|BZ2|xz|XZ)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "archives"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fcc7bb1f-55a3-4e89-9273-cf68447efd3c",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "^(exe|EXE|apk|APK|msi|MSI|bat|BAT|sh|SH|bin|BIN|dmg|DMG)$",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "executables"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "387442cb-51a5-4daa-94a1-0f11bcfba6c1",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "empty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "folders"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        176,
+        768
+      ],
+      "id": "a2f69adf-3bd0-46a4-992a-bb1259db98de",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "lastModifiedAtEpoch"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        864
+      ],
+      "id": "4d6b12bd-686f-4a00-bbce-700fa16d551a",
+      "name": "Sort1"
+    },
+    {
+      "parameters": {
+        "maxItems": "={{ $json.totalcount - 10 }}"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        1056
+      ],
+      "id": "a359d3a1-b14b-44be-b0c9-d094a739460b",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "command": "ls -ali \"/mnt/E_drive/HDD FILES/Downloads\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        672
+      ],
+      "id": "89600c7e-98e5-4a1e-abed-645aa4c38565",
+      "name": "get metadata1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const output = items[0].json.stdout; // Get the raw output from ls -ali\nconst lines = output.split('\\n').filter(line => line.length > 0 && !line.startsWith('total'));\n\nconst structuredItems = [];\n\nfor (const line of lines) {\n    // Example line: 419515 -rw-r--r--    1 root     root         68579 Jul 29 10:00 myimage.png\n    const parts = line.split(/\\s+/).filter(p => p.length > 0); // Split by one or more spaces and filter empty parts\n\n    // Basic check for expected number of parts in an ls -ali output\n    if (parts.length < 9) {\n        console.warn(\"Skipping malformed line (too few parts):\", line);\n        continue;\n    }\n\n    const inode = parseInt(parts[0], 10);\n    const permissions = parts[1];\n    const isDirectory = permissions.startsWith('d');\n    const sizeBytes = parseInt(parts[5], 10);\n\n    // Month, Day, Time/Year (e.g., Jul, 29, 10:00 or Jul, 29, 2024)\n    const month = parts[6];\n    const day = parts[7];\n    const timeOrYear = parts[8];\n\n    // Re-join the filename, which is everything after the date/time part\n    let fileName = parts.slice(9).join(' ');\n\n    // Construct full path\n    const fullPath = `/mnt/E_drive/HDD FILES/Downloads/${fileName}`;\n    \n    // Parsing date logic (your existing logic is kept here)\n    let lastModifiedAtEpoch = null;\n    try {\n        let dateString = `${month} ${day} ${timeOrYear}`;\n        let year = new Date().getFullYear();\n        if (!timeOrYear.includes(':')) {\n            year = parseInt(timeOrYear, 10);\n            dateString = `${month} ${day} ${year}`;\n        } else {\n            let tempDate = new Date(`${dateString} ${year}`);\n            if (tempDate.getTime() > Date.now()) {\n                year--;\n            }\n            dateString = `${month} ${day} ${year} ${timeOrYear}`;\n        }\n        lastModifiedAtEpoch = new Date(dateString).getTime();\n    } catch (e) {\n        console.warn(\"Could not parse date for line:\", line, e.message);\n    }\n\n    const fileExtension = isDirectory ? '' : (fileName.includes('.') ? fileName.substring(fileName.lastIndexOf('.') + 1) : '');\n\n    structuredItems.push({\n        json: {\n            inode: inode, // The new variable you requested\n            path: fullPath,\n            fileName: fileName,\n            isDir: isDirectory,\n            sizeBytes: sizeBytes,\n            lastModifiedAtEpoch: lastModifiedAtEpoch,\n            lastModifiedAtReadable: `${month} ${day} ${timeOrYear}`,\n            fileExtension: fileExtension\n        }\n    });\n}\n\nreturn structuredItems;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -176,
+        672
+      ],
+      "id": "fdc49980-33ca-49a3-8f41-07e8ec69a43b",
+      "name": "arrange metadata1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b86e576f-6688-4d6f-b50b-2cb602145982",
+              "name": "totalcount",
+              "value": "={{ $input.all().length }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -336,
+        1056
+      ],
+      "id": "2fd5118f-831f-4c83-ae07-392039d68c2b",
+      "name": "add total count1"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=find \"/mnt/E_drive/HDD FILES/Downloads/\" -inum {{ $json.inode }} -exec mv -t \"/mnt/E_drive/HDD FILES/Downloads/VIDEOS/\" {} +"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        432,
+        800
+      ],
+      "id": "2a9225d9-2fd2-4f64-86a6-14f06472c4c0",
+      "name": "move to VIDEOS folder1"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=find \"/mnt/E_drive/HDD FILES/Downloads/\" -inum {{ $json.inode }} -exec mv -t \"/mnt/E_drive/HDD FILES/Downloads/IMAGES/\" {} +"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        432,
+        656
+      ],
+      "id": "f863ce18-74de-4e97-958f-b3adeba62549",
+      "name": "move to IMAGES folder1"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=find \"/mnt/E_drive/HDD FILES/Downloads/\" -inum {{ $json.inode }} -exec mv -t \"/mnt/E_drive/HDD FILES/Downloads/AUDIOS/\" {} +"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        432,
+        944
+      ],
+      "id": "096bcf30-22a0-42bd-9bae-fb4d134bc715",
+      "name": "move to AUDIOS folder1"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=find \"/mnt/E_drive/HDD FILES/Downloads/\" -inum {{ $json.inode }} -exec mv -t \"/mnt/E_drive/HDD FILES/Downloads/DOCUMENTS/\" {} +"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        432,
+        1088
+      ],
+      "id": "dbe83b30-5599-4312-ab27-e0e931904ccf",
+      "name": "move to DOCUMENTS folder1"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=find \"/mnt/E_drive/HDD FILES/Downloads/\" -inum {{ $json.inode }} -exec mv -t \"/mnt/E_drive/HDD FILES/Downloads/ARCHIVES/\" {} +"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        704,
+        656
+      ],
+      "id": "6a7848ef-bf1e-40ce-930c-36d0113f074d",
+      "name": "move to ARCHIVES folder1"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=find \"/mnt/E_drive/HDD FILES/Downloads/\" -inum {{ $json.inode }} -exec mv -t \"/mnt/E_drive/HDD FILES/Downloads/EXECUTABLES/\" {} +"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        704,
+        800
+      ],
+      "id": "d5d239a5-95da-4cc9-bc71-92eb9e6bdf3c",
+      "name": "move to EXECUTABLES folder1"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=find \"/mnt/E_drive/HDD FILES/Downloads/\" -inum {{ $json.inode }} -exec mv -t \"/mnt/E_drive/HDD FILES/Downloads/FOLDERS/\" {} +"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        704,
+        944
+      ],
+      "id": "c122a8c9-f489-432e-8e9f-9dd046b4bd3e",
+      "name": "move to FOLDERS folder1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=find \"/mnt/E_drive/HDD FILES/Downloads/\" -inum {{ $json.inode }} -exec mv -t \"/mnt/E_drive/HDD FILES/Downloads/OTHERS/\" {} +"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        704,
+        1088
+      ],
+      "id": "bcb7e5ed-2755-41b2-8be8-30c9f35094e4",
+      "name": "move to OTHERS folder1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a530ebd6-a980-4438-8ea5-b540703aa553",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "IMAGES",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "e8c1f40a-5c1f-4b11-8842-77a0350ab954",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "VIDEOS",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "575d72a5-093c-48f6-8197-3f680ccfd771",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "AUDIOS",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "46bde725-5eeb-45f1-b8d5-4a60c2699fd7",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "DOCUMENTS",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "09db7843-7b0e-4917-ad70-3a2298de593d",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "ARCHIVES",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "6a71804f-6543-452f-b326-3a76feea6517",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "EXECUTABLES",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "ec42cae7-c7ed-436a-95cd-e6a98f507206",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "FOLDERS",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "fcb7b7e0-68ed-48c4-9817-a22b46412d85",
+              "leftValue": "={{ $json.fileName }}",
+              "rightValue": "OTHERS",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -176,
+        864
+      ],
+      "id": "d4188363-3cbe-4266-88ff-4388d3770cc7",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "triggerOn": "folder",
+        "path": "/mnt/E_drive/HDD FILES/Downloads/",
+        "events": [
+          "add"
+        ],
+        "options": {
+          "usePolling": true
+        }
+      },
+      "type": "n8n-nodes-base.localFileTrigger",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        496
+      ],
+      "id": "a7051a1c-1d57-4c2d-8680-fa23e6cafff0",
+      "name": "Local File Trigger1"
+    },
+    {
+      "parameters": {
+        "command": "=ls -a \"/mnt/E_drive/HDD FILES/Downloads/\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        432,
+        1296
+      ],
+      "id": "00d7a753-9ea7-43e3-b13c-ad35994fef02",
+      "name": "mv DOCUMENTS"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "62aaf0aa-cb4a-4452-90ef-3c4b865f4d51",
+              "leftValue": "={{ $json.fileExtension }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -576,
+        1024
+      ],
+      "id": "38b75ce1-8454-477a-b6d5-86b07910429a",
+      "name": "If2"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "get metadata1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "move to IMAGES folder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to VIDEOS folder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to AUDIOS folder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to DOCUMENTS folder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to ARCHIVES folder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to EXECUTABLES folder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to FOLDERS folder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to OTHERS folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get metadata": {
+      "main": [
+        [
+          {
+            "node": "arrange metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "arrange metadata": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add total count": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "add total count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Local File Trigger": {
+      "main": [
+        [
+          {
+            "node": "get metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "move to IMAGES folder1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to VIDEOS folder1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to AUDIOS folder1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to DOCUMENTS folder1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to ARCHIVES folder1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to EXECUTABLES folder1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to FOLDERS folder1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "move to OTHERS folder1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get metadata1": {
+      "main": [
+        [
+          {
+            "node": "arrange metadata1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "arrange metadata1": {
+      "main": [
+        [
+          {
+            "node": "Sort1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add total count1": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "add total count1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Local File Trigger1": {
+      "main": [
+        [
+          {
+            "node": "get metadata1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "add total count1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "06f48e3a-038f-4360-b2ed-bb3d38f625e2",
+  "activeVersionId": null,
+  "triggerCount": 2,
+  "shared": [
+    {
+      "updatedAt": "2025-07-26T15:31:06.606Z",
+      "createdAt": "2025-07-26T15:31:06.606Z",
+      "role": "workflow:owner",
+      "workflowId": "WWJNDQPC2X4wyije",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
