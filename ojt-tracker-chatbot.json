@@ -1,0 +1,592 @@
+{
+  "updatedAt": "2026-01-27T01:35:15.012Z",
+  "createdAt": "2026-01-22T08:44:32.662Z",
+  "id": "-7OV_VMrcu8-8vP--OXem",
+  "name": "OJT TRACKER CHATBOT",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -448,
+        0
+      ],
+      "id": "76cef89a-87d6-4773-9a78-51f74f68bcdb",
+      "name": "Telegram Trigger",
+      "webhookId": "3cb77abe-cd73-48b0-8eae-28c3f923b04b",
+      "credentials": {
+        "telegramApi": {
+          "id": "xAR03zieJX7sa85l",
+          "name": "Ai Assistant"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "Stat",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "1bb994ce-a081-4ed1-981b-17cd3518ac12"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Stat flow"
+            }
+          ]
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -240,
+        0
+      ],
+      "id": "32a1a2fe-9ab9-45c9-8a35-9fa28040adf9",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Calculate the hours of the ojt minus 1hr per day for lunch. The required hours for ojt is 500hrs. Use your google sheet tool to get the data necessary. Format your response in markdown to send to telegram, make it short and straight forward, use emojis",
+        "needsFallback": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d91e5505-d9b9-4d76-8fef-6d61d6574d9b",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        176
+      ],
+      "id": "148f2f18-f291-4c03-887e-c389cfa4ef1a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wZuLC2RdDp5qitbQ",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "7577088103",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        0
+      ],
+      "id": "2b367e0d-2f78-4afd-914f-ae3982976183",
+      "name": "Send a text message",
+      "webhookId": "568f8ed7-8dbf-42e6-bada-c417333f7a38",
+      "credentials": {
+        "telegramApi": {
+          "id": "xAR03zieJX7sa85l",
+          "name": "Ai Assistant"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        192,
+        176
+      ],
+      "id": "ef2733db-45ce-469e-8afc-12e7df5c01b7",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -176,
+        176
+      ],
+      "id": "574a33f0-fcfd-40e7-b165-8b71d814d965",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "VeHjjkENcCKPK22H",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4",
+          "mode": "list",
+          "cachedResultName": "OJT TRACKER (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1352632665,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4/edit#gid=1352632665"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        80,
+        176
+      ],
+      "id": "39893583-a54b-439d-b750-69b45c962d9f",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "AaDTfoewRTDvJqmq",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "d6b9a4bc-438c-4ac1-b9b5-60522bf56cbe",
+  "activeVersionId": "d6b9a4bc-438c-4ac1-b9b5-60522bf56cbe",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2026-01-22T08:44:32.667Z",
+      "createdAt": "2026-01-22T08:44:32.667Z",
+      "role": "workflow:owner",
+      "workflowId": "-7OV_VMrcu8-8vP--OXem",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-01-27T01:35:32.000Z",
+    "createdAt": "2026-01-27T01:35:15.013Z",
+    "versionId": "d6b9a4bc-438c-4ac1-b9b5-60522bf56cbe",
+    "workflowId": "-7OV_VMrcu8-8vP--OXem",
+    "nodes": [
+      {
+        "parameters": {
+          "updates": [
+            "message"
+          ],
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegramTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -448,
+          0
+        ],
+        "id": "76cef89a-87d6-4773-9a78-51f74f68bcdb",
+        "name": "Telegram Trigger",
+        "webhookId": "3cb77abe-cd73-48b0-8eae-28c3f923b04b",
+        "credentials": {
+          "telegramApi": {
+            "id": "xAR03zieJX7sa85l",
+            "name": "Ai Assistant"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": false,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.message.text }}",
+                      "rightValue": "Stat",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "1bb994ce-a081-4ed1-981b-17cd3518ac12"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "Stat flow"
+              }
+            ]
+          },
+          "options": {
+            "ignoreCase": true
+          }
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.4,
+        "position": [
+          -240,
+          0
+        ],
+        "id": "32a1a2fe-9ab9-45c9-8a35-9fa28040adf9",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Calculate the hours of the ojt minus 1hr per day for lunch. The required hours for ojt is 500hrs. Use your google sheet tool to get the data necessary. Format your response in markdown to send to telegram, make it short and straight forward, use emojis",
+          "needsFallback": true,
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "d91e5505-d9b9-4d76-8fef-6d61d6574d9b",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          -48,
+          176
+        ],
+        "id": "148f2f18-f291-4c03-887e-c389cfa4ef1a",
+        "name": "Google Gemini Chat Model",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "wZuLC2RdDp5qitbQ",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "7577088103",
+          "text": "={{ $json.output }}",
+          "additionalFields": {
+            "appendAttribution": false,
+            "parse_mode": "Markdown"
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          352,
+          0
+        ],
+        "id": "2b367e0d-2f78-4afd-914f-ae3982976183",
+        "name": "Send a text message",
+        "webhookId": "568f8ed7-8dbf-42e6-bada-c417333f7a38",
+        "credentials": {
+          "telegramApi": {
+            "id": "xAR03zieJX7sa85l",
+            "name": "Ai Assistant"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+        "typeVersion": 1,
+        "position": [
+          192,
+          176
+        ],
+        "id": "ef2733db-45ce-469e-8afc-12e7df5c01b7",
+        "name": "Calculator"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4.1-mini"
+          },
+          "builtInTools": {},
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.3,
+        "position": [
+          -176,
+          176
+        ],
+        "id": "574a33f0-fcfd-40e7-b165-8b71d814d965",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "VeHjjkENcCKPK22H",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4",
+            "mode": "list",
+            "cachedResultName": "OJT TRACKER (Responses)",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 1352632665,
+            "mode": "list",
+            "cachedResultName": "Form Responses 1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4/edit#gid=1352632665"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.7,
+        "position": [
+          80,
+          176
+        ],
+        "id": "39893583-a54b-439d-b750-69b45c962d9f",
+        "name": "Get row(s) in sheet in Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "AaDTfoewRTDvJqmq",
+            "name": "manaoghanzphilip@gmail.com"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Telegram Trigger": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Calculator": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Get row(s) in sheet in Google Sheets": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hanz Philip Manaog",
+    "name": "Version d6b9a4bc",
+    "description": "",
+    "autosaved": true
+  },
+  "tags": []
+}
