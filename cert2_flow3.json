@@ -1,0 +1,136 @@
+{
+  "updatedAt": "2026-01-29T06:14:47.531Z",
+  "createdAt": "2026-01-29T05:54:44.009Z",
+  "id": "c4j0IKc75gYKnCX0Vtdbn",
+  "name": "cert2_flow3",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d060c981-c766-45a4-9cca-a9e7c31463f0",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "=The workflow {{ $json.workflow.name }} failed, with the error message: {{ $json.execution.error.message }} . Last node executed: {{ $json.execution.lastNodeExecuted }} . Check this workflow execution here: {{ $json.execution.url }} My Unique ID: f1d0807ace6a4b1af83a5cd75b3ef53f",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "9bfda13a-7641-4903-b717-92deae9ca65e",
+      "name": "Discord",
+      "webhookId": "07e496af-6ca3-43d8-aa61-fe25e4c4e8ff",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "jt6di5DVPbLoYyMb",
+          "name": "n8n course level 2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "a70b5f78-0d9f-4dcd-a334-a61548c8ce79",
+  "activeVersionId": "48ec2f40-3b10-4117-b347-b5078646bb30",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-01-29T05:54:44.012Z",
+      "createdAt": "2026-01-29T05:54:44.012Z",
+      "role": "workflow:owner",
+      "workflowId": "c4j0IKc75gYKnCX0Vtdbn",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-01-29T05:57:30.000Z",
+    "createdAt": "2026-01-29T05:56:14.164Z",
+    "versionId": "48ec2f40-3b10-4117-b347-b5078646bb30",
+    "workflowId": "c4j0IKc75gYKnCX0Vtdbn",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.errorTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "d060c981-c766-45a4-9cca-a9e7c31463f0",
+        "name": "Error Trigger"
+      },
+      {
+        "parameters": {
+          "authentication": "webhook",
+          "content": "=The workflow {workflow name} failed, with the error message: {execution error message}. Last node executed: {name of the last executed node}. Check this workflow execution here: {execution URL} My Unique ID: f1d0807ace6a4b1af83a5cd75b3ef53f",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.discord",
+        "typeVersion": 2,
+        "position": [
+          208,
+          0
+        ],
+        "id": "9bfda13a-7641-4903-b717-92deae9ca65e",
+        "name": "Discord",
+        "webhookId": "07e496af-6ca3-43d8-aa61-fe25e4c4e8ff",
+        "credentials": {
+          "discordWebhookApi": {
+            "id": "jt6di5DVPbLoYyMb",
+            "name": "n8n course level 2"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Error Trigger": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hanz Philip Manaog",
+    "name": "Version 48ec2f40",
+    "description": "",
+    "autosaved": true
+  },
+  "tags": []
+}
