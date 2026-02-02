@@ -1,0 +1,308 @@
+{
+  "updatedAt": "2026-01-27T01:22:07.176Z",
+  "createdAt": "2026-01-27T00:12:32.579Z",
+  "id": "-JkaunEMTlgKMY5X9mbQv",
+  "name": "OJT TRACKER V2",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 17 * * 1-4"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1f89cc0e-a82d-437c-b465-23d6190f08b0",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "7577088103",
+        "text": "=📅 ATTENDANCE CHECK\n\nhttps://docs.google.com/forms/d/e/1FAIpQLSde4LtGQQR9KkplskcmBUWqy7tcIHl-VnhaYbQ0RIhBs74bBg/viewform?usp=publish-editor",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "5b012eab-ceec-4397-8f60-2a075c7cd916",
+      "name": "Send a text message",
+      "webhookId": "e1e45b59-cc49-4eee-a875-e17c1d5ccb4a",
+      "credentials": {
+        "telegramApi": {
+          "id": "xAR03zieJX7sa85l",
+          "name": "Ai Assistant"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4",
+          "mode": "list",
+          "cachedResultName": "OJT TRACKER (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1352632665,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4/edit#gid=1352632665"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        176
+      ],
+      "id": "14460df9-284d-4ac3-b34a-2d6d65702e00",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "sxNSI3kRkJonbYy5",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "7577088103",
+        "text": "=📅 YOUR ATTENDANCE WAS UPDATED ✅",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        176
+      ],
+      "id": "bebb7291-a600-4c0e-a627-11e0cffc5d53",
+      "name": "Send a text message1",
+      "webhookId": "e1e45b59-cc49-4eee-a875-e17c1d5ccb4a",
+      "credentials": {
+        "telegramApi": {
+          "id": "xAR03zieJX7sa85l",
+          "name": "Ai Assistant"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "bbf07455-5dfb-4b3c-9b47-a34c1cdbe79e",
+  "activeVersionId": "bbf07455-5dfb-4b3c-9b47-a34c1cdbe79e",
+  "triggerCount": 2,
+  "shared": [
+    {
+      "updatedAt": "2026-01-27T00:12:32.582Z",
+      "createdAt": "2026-01-27T00:12:32.582Z",
+      "role": "workflow:owner",
+      "workflowId": "-JkaunEMTlgKMY5X9mbQv",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-01-27T01:22:24.000Z",
+    "createdAt": "2026-01-27T01:22:07.176Z",
+    "versionId": "bbf07455-5dfb-4b3c-9b47-a34c1cdbe79e",
+    "workflowId": "-JkaunEMTlgKMY5X9mbQv",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0 17 * * 1-4"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          0,
+          0
+        ],
+        "id": "1f89cc0e-a82d-437c-b465-23d6190f08b0",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "chatId": "7577088103",
+          "text": "=📅 ATTENDANCE CHECK\n\nhttps://docs.google.com/forms/d/e/1FAIpQLSde4LtGQQR9KkplskcmBUWqy7tcIHl-VnhaYbQ0RIhBs74bBg/viewform?usp=publish-editor",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          208,
+          0
+        ],
+        "id": "5b012eab-ceec-4397-8f60-2a075c7cd916",
+        "name": "Send a text message",
+        "webhookId": "e1e45b59-cc49-4eee-a875-e17c1d5ccb4a",
+        "credentials": {
+          "telegramApi": {
+            "id": "xAR03zieJX7sa85l",
+            "name": "Ai Assistant"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "documentId": {
+            "__rl": true,
+            "value": "1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4",
+            "mode": "list",
+            "cachedResultName": "OJT TRACKER (Responses)",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 1352632665,
+            "mode": "list",
+            "cachedResultName": "Form Responses 1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MVh64-Q4-kAP0dxGFQwmMEvd8gyFeaMh54GEOG_YYV4/edit#gid=1352632665"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTrigger",
+        "typeVersion": 1,
+        "position": [
+          -16,
+          176
+        ],
+        "id": "14460df9-284d-4ac3-b34a-2d6d65702e00",
+        "name": "Google Sheets Trigger",
+        "credentials": {
+          "googleSheetsTriggerOAuth2Api": {
+            "id": "sxNSI3kRkJonbYy5",
+            "name": "Google Sheets Trigger account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "7577088103",
+          "text": "=📅 YOUR ATTENDANCE WAS UPDATED ✅",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          208,
+          176
+        ],
+        "id": "bebb7291-a600-4c0e-a627-11e0cffc5d53",
+        "name": "Send a text message1",
+        "webhookId": "e1e45b59-cc49-4eee-a875-e17c1d5ccb4a",
+        "credentials": {
+          "telegramApi": {
+            "id": "xAR03zieJX7sa85l",
+            "name": "Ai Assistant"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Sheets Trigger": {
+        "main": [
+          [
+            {
+              "node": "Send a text message1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Hanz Philip Manaog",
+    "name": "Version bbf07455",
+    "description": "",
+    "autosaved": true
+  },
+  "tags": []
+}
