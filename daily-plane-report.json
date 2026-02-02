@@ -1,0 +1,725 @@
+{
+  "updatedAt": "2025-10-11T10:51:40.000Z",
+  "createdAt": "2025-09-01T14:25:10.927Z",
+  "id": "CVAGAbktF2zmAqYP",
+  "name": "Daily Plane Report",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "plane",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "565cf5aa-5bc6-4e26-917a-88313868f59a",
+      "name": "Webhook",
+      "webhookId": "c2695dcf-31c1-4997-8508-2acc87bc116e"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "planeDailyLogs",
+          "mode": "list",
+          "cachedResultName": "planeDailyLogs"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "content",
+              "value": "={{ JSON.stringify($json) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        416,
+        0
+      ],
+      "id": "71b7d770-7469-4b41-9efe-0b4ab1a2e5f6",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "planeData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "c2cd51c7-cc41-476f-9a06-814985a6af6c",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        16,
+        208
+      ],
+      "id": "57e698f4-6faa-4cb5-a68b-8c85bc828dd2",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "planeDailyLogs",
+          "mode": "list",
+          "cachedResultName": "planeDailyLogs"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        224,
+        208
+      ],
+      "id": "16f2815d-92d6-4959-ae97-2d5a9941e622",
+      "name": "Select rows from a table",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "dailyData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        432,
+        208
+      ],
+      "id": "6f91f7e0-9c99-466d-96b7-b8e2832e364e",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Create a short daily report about the data below, include suggestions.\n\n{{ JSON.stringify($json) }}",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "You are a helpful assistant.\nYour task is to create a dailyReport based on the data that comes from a project management tool called Plane.\nMake it short and concise.\nAdd a few suggestions based on the current status and data."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        640,
+        208
+      ],
+      "id": "3909ed2c-0b7b-4476-9088-c7a16e1067ae",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        496,
+        416
+      ],
+      "id": "946cc65e-4353-4b7a-8b7a-13cedab6a57a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wZuLC2RdDp5qitbQ",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        624,
+        416
+      ],
+      "id": "27f6acfd-d237-4380-88db-38b74c15a05e",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "VeHjjkENcCKPK22H",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "planeWeeklyLogs",
+          "mode": "list",
+          "cachedResultName": "planeWeeklyLogs"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "content",
+              "value": "={{ JSON.stringify($json) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        960,
+        208
+      ],
+      "id": "4cfdc975-7c81-4306-8792-80da1287a046",
+      "name": "Insert rows in a table1",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "hanzphilip.manaog@email.lcup.edu.ph",
+        "subject": "Plane Daily Report",
+        "message": "={{ $json.htmlOutput }}",
+        "options": {
+          "appendAttribution": false,
+          "ccList": "=jon.bernabe@email.lcup.edu.ph, johnchristian.rosuelo@email.lcup.edu.ph, roinathaniel.ballesteros@email.lcup.edu.ph, ramesessoraya.cruz@email.lcup.edu.ph",
+          "senderName": "Plane Automated Message"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1152,
+        368
+      ],
+      "id": "2f7723f1-cb93-41e8-b544-30a4b6789c1e",
+      "name": "Send a message",
+      "webhookId": "2ad10847-a24d-4e5f-8e9e-c36d7da4049d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.output }}",
+        "destinationKey": "htmlOutput",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        960,
+        368
+      ],
+      "id": "aa74ba81-893a-4c97-a99b-e0a9888baff2",
+      "name": "Markdown"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                6
+              ],
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        608
+      ],
+      "id": "ae08f596-c151-4fd8-badc-1b005c93661b",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "planeWeeklyLogs",
+          "mode": "list",
+          "cachedResultName": "planeWeeklyLogs"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        208,
+        608
+      ],
+      "id": "369ff500-8639-4a58-b9d4-1e7b21d772d2",
+      "name": "Select rows from a table1",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "dailyData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        416,
+        608
+      ],
+      "id": "5abc27db-1a92-49a7-9384-60838d9164a7",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Create a short weekly report about the data below, include suggestions.\n\n{{ JSON.stringify($json) }}",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "You are a helpful assistant.\nYour task is to create a weekly report based on the data that comes from a project management tool called Plane.\nMake it short and concise.\nAdd a few suggestions based on the current status and data."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        608
+      ],
+      "id": "f3d45202-19e8-47a1-94e7-06d27c6e5e10",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        480,
+        816
+      ],
+      "id": "4b8790b1-dd96-4568-9804-e2530a23b99d",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wZuLC2RdDp5qitbQ",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        608,
+        816
+      ],
+      "id": "81ed1b5e-c549-4c69-9d3a-743f588815d0",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "VeHjjkENcCKPK22H",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "hanzphilip.manaog@email.lcup.edu.ph",
+        "subject": "Plane Daily Report",
+        "message": "={{ $json.htmlOutput }}",
+        "options": {
+          "appendAttribution": false,
+          "ccList": "=jon.bernabe@email.lcup.edu.ph, johnchristian.rosuelo@email.lcup.edu.ph, roinathaniel.ballesteros@email.lcup.edu.ph, ramesessoraya.cruz@email.lcup.edu.ph",
+          "senderName": "Plane Automated Message"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1136,
+        768
+      ],
+      "id": "0aca5d97-ca1b-46c7-813a-54a009458959",
+      "name": "Send a message1",
+      "webhookId": "2ad10847-a24d-4e5f-8e9e-c36d7da4049d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SQjQESRGfbvsewnr",
+          "name": "manaoghanzphilip@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.output }}",
+        "destinationKey": "htmlOutput",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        944,
+        768
+      ],
+      "id": "883a7efb-7fed-4f7f-9fc3-54e34b151418",
+      "name": "Markdown1"
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "table": {
+          "__rl": true,
+          "value": "planeWeeklyLogs",
+          "mode": "list",
+          "cachedResultName": "planeWeeklyLogs"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        944,
+        608
+      ],
+      "id": "0a4680f1-b8c1-492b-a667-946e65e0e4ea",
+      "name": "Delete table or rows",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "table": {
+          "__rl": true,
+          "value": "planeDailyLogs",
+          "mode": "list",
+          "cachedResultName": "planeDailyLogs"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1152,
+        208
+      ],
+      "id": "8478330b-452d-4471-ba53-0f27f154bfea",
+      "name": "Delete table or rows1",
+      "credentials": {
+        "mySql": {
+          "id": "CwqMbq3EowXG7dzv",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Delete table or rows",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Markdown1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Markdown1": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table1": {
+      "main": [
+        [
+          {
+            "node": "Delete table or rows1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "X7KwLzwsgWIkSzBo"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Schedule Trigger1": {
+      "recurrenceRules": []
+    }
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "624892a1-4344-48f0-97f2-69faa2847fa0",
+  "activeVersionId": null,
+  "triggerCount": 3,
+  "shared": [
+    {
+      "updatedAt": "2025-09-01T14:25:10.931Z",
+      "createdAt": "2025-09-01T14:25:10.931Z",
+      "role": "workflow:owner",
+      "workflowId": "CVAGAbktF2zmAqYP",
+      "projectId": "kZBVJF2foTBqYjQ4"
+    }
+  ],
+  "activeVersion": null,
+  "tags": []
+}
